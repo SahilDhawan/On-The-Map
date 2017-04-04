@@ -8,9 +8,12 @@
 //
 
 import UIKit
+import MapKit
 
 class OnTheMapViewController: UIViewController {
     
+    @IBOutlet weak var mapView: MKMapView!
+    var resultArray : [[String:AnyObject]] = [[:]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +23,10 @@ class OnTheMapViewController: UIViewController {
             {
                 do{
                     let resultDictionary = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! [String:AnyObject]
-                    let resultArray = resultDictionary["results"] as! [[String:AnyObject]]
+                    self.resultArray = resultDictionary["results"] as! [[String:AnyObject]]
+                    DispatchQueue.main.async {
+                        self.addingAnnotations()
+                    }
                 }
                 catch{}
             }
@@ -46,6 +52,17 @@ class OnTheMapViewController: UIViewController {
             {
                 print(errorString!)
             }
+        }
+    }
+    func addingAnnotations()
+    {
+        for studentData in resultArray
+        {
+            let latitude = studentData["latitude"] as! CLLocationDegrees
+            let longitude = studentData["longitude"] as! CLLocationDegrees
+            let annotation = MKPointAnnotation.init()
+            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+            self.mapView.addAnnotation(annotation)
         }
     }
 }

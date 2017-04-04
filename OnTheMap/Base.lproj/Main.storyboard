@@ -251,6 +251,9 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="trm-WA-hWF" id="SID-Wv-zbL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suD-pP-8cT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
