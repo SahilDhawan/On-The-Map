@@ -10,44 +10,55 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    let activityView : UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var debugLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+    
+    func activityViewIndicator()
+    {
+        activityView.center = CGPoint.init(x: self.view.frame.width/2, y: self.view.frame.height/2)
+        activityView.alpha = 1
+        activityView.startAnimating()
+        self.view.addSubview(activityView)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @IBAction func loginButtonPressed(_ sender: Any) {
-        
+        activityViewIndicator()
+        self.logInButton.isEnabled = false
         guard  emailTextField.text == nil, passwordTextField.text == nil else
         {
-                //print("guard check")
             UdacityUser().udacityLogIn(emailTextField.text!,passwordTextField.text!){(result,error) in
                 if error == nil
                 {
                     let range = Range(5 ..< result!.count)
                     let newData = result?.subdata(in: range)
-                    //print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
                     do
                     {
                         let dataDictionary = try JSONSerialization.jsonObject(with: newData!, options: .allowFragments) as! NSDictionary
-                        let sessionDictionary = dataDictionary["session"] as! NSDictionary
-                        let sessionId = sessionDictionary["id"] as! String
-                        print(sessionId)
+                        let sessionDictionary = dataDictionary["session"] as? NSDictionary
                         
+                        if let session = sessionDictionary
+                        {
+                            let sessionId = session["id"] as! String
+                            UdacityUser().sessionId = sessionId
+                        }
+                        else
+                        {
+                            DispatchQueue.main.async {
+                                self.debugLabel.text = "Invalid Login!"
+                                self.activityView.stopAnimating()
+                                self.logInButton.isEnabled = true
+                            }
+                            return
+                        }
                     }
                     catch{}
                     DispatchQueue.main.async {
+                        self.activityView.stopAnimating()
                         self.performSegue(withIdentifier: "loginSegue", sender: self)
                     }
                 }
@@ -58,9 +69,6 @@ class LoginViewController: UIViewController {
             }
             return
         }
-        
     }
-    
-    
 }
 

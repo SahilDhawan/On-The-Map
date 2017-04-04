@@ -11,10 +11,7 @@ import Foundation
 class UdacityUser:NSObject
 {
     
-    override init()
-    {
-        super.init()
-    }
+    var sessionId : String = " "
     
     func udacityLogIn(_ email : String, _ password : String , completionHandler : @escaping (_ result:Data?, _ error : String?) ->Void)
     {
