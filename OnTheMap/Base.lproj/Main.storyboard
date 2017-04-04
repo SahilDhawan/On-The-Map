@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="-932" y="-63"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="BYZ-38-t0r" customClass="LoginViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -76,7 +76,7 @@
                                         <rect key="frame" x="0.0" y="40" width="303" height="35"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7C-JZ-btV">
                                         <rect key="frame" x="0.0" y="80" width="303" height="35"/>
@@ -85,13 +85,13 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Dw0-1U-5nN" kind="show" id="8Jy-Ib-wxJ"/>
+                                            <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mai-7M-ds3"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mdf-QM-R28">
-                                <rect key="frame" x="45.5" y="380" width="284.5" height="30"/>
+                                <rect key="frame" x="68" y="380" width="239.5" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dont have an account ?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b74-ut-LnV">
                                         <rect key="frame" x="0.0" y="0.0" width="179.5" height="30"/>
@@ -100,9 +100,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6e-9S-GNi">
-                                        <rect key="frame" x="184.5" y="0.0" width="100" height="30"/>
+                                        <rect key="frame" x="184.5" y="0.0" width="55" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="Bh1-AV-oXW"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="75" id="Tvd-Nu-U1F"/>
                                         </constraints>
                                         <state key="normal" title="Sign Up"/>
                                         <connections>
@@ -111,20 +111,32 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYk-OU-QBO">
+                                <rect key="frame" x="187" y="460" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="mdf-QM-R28" firstAttribute="top" secondItem="3Rz-WX-kqK" secondAttribute="bottom" constant="20" id="1Dr-Dh-Hi8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3Rz-WX-kqK" secondAttribute="trailing" constant="20" id="2bj-tD-GS5"/>
                             <constraint firstItem="63w-vJ-wsN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DD6-jF-3wS"/>
+                            <constraint firstItem="cYk-OU-QBO" firstAttribute="top" secondItem="mdf-QM-R28" secondAttribute="bottom" constant="50" id="Hxm-9P-AH7"/>
                             <constraint firstItem="63w-vJ-wsN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="75" id="NyC-yU-xtI"/>
                             <constraint firstItem="3Rz-WX-kqK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="f4L-Wi-8qI"/>
+                            <constraint firstItem="cYk-OU-QBO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="g87-iD-ahr"/>
                             <constraint firstItem="3Rz-WX-kqK" firstAttribute="top" secondItem="63w-vJ-wsN" secondAttribute="bottom" constant="50" id="nwc-GA-Exz"/>
                             <constraint firstItem="mdf-QM-R28" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rDb-iX-T9u"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Keh-az-lym"/>
                     <connections>
+                        <outlet property="emailTextField" destination="lac-JU-cke" id="grp-ZE-36O"/>
+                        <outlet property="logInButton" destination="X7C-JZ-btV" id="ghg-5j-S9a"/>
+                        <outlet property="passwordTextField" destination="3jn-9F-Yaw" id="43s-KE-N85"/>
+                        <outlet property="signUpButton" destination="f6e-9S-GNi" id="vRo-h2-pzY"/>
                         <segue destination="Dw0-1U-5nN" kind="show" identifier="loginSegue" id="BYC-yF-e59"/>
                     </connections>
                 </viewController>
@@ -135,7 +147,7 @@
         <!--On the Map-->
         <scene sceneID="oYa-z4-rqp">
             <objects>
-                <viewController id="hgL-z1-9ma" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnTheTable" id="hgL-z1-9ma" customClass="OnTheTableViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="J8p-A0-3dJ"/>
                         <viewControllerLayoutGuide type="bottom" id="X2g-Yk-2ob"/>
@@ -172,7 +184,7 @@
         <!--On the Map-->
         <scene sceneID="3eB-Ec-Zvw">
             <objects>
-                <viewController id="Pbd-v3-zyS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnTheMap" id="Pbd-v3-zyS" customClass="OnTheMapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ktU-H1-prN"/>
                         <viewControllerLayoutGuide type="bottom" id="pcA-Pz-gWO"/>
@@ -187,15 +199,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="trm-WA-hWF" firstAttribute="leading" secondItem="bnz-Gz-LzC" secondAttribute="leading" id="X1B-f5-J4x"/>
-                            <constraint firstAttribute="trailing" secondItem="trm-WA-hWF" secondAttribute="trailing" id="giF-Jd-GHF"/>
+                            <constraint firstAttribute="trailing" secondItem="trm-WA-hWF" secondAttribute="trailing" id="Wje-d6-uAQ"/>
                             <constraint firstItem="trm-WA-hWF" firstAttribute="top" secondItem="ktU-H1-prN" secondAttribute="bottom" id="muv-CZ-2Af"/>
+                            <constraint firstItem="trm-WA-hWF" firstAttribute="leading" secondItem="bnz-Gz-LzC" secondAttribute="leading" id="oMY-J8-UVw"/>
                             <constraint firstItem="pcA-Pz-gWO" firstAttribute="top" secondItem="trm-WA-hWF" secondAttribute="bottom" id="vhJ-y8-Mp4"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="On the Map" id="1Pd-3p-Yhg">
-                        <barButtonItem key="leftBarButtonItem" title="LOG OUT" id="72D-As-17P"/>
+                        <barButtonItem key="leftBarButtonItem" title="LOG OUT" id="72D-As-17P">
+                            <connections>
+                                <action selector="logOutButtonPressed:" destination="Pbd-v3-zyS" id="sTk-1t-5S9"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="bc4-Ow-dpR"/>
                             <barButtonItem systemItem="refresh" id="GKW-zA-jbb"/>
@@ -330,7 +346,4 @@
         <image name="icon_world" width="52" height="67"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="BYC-yF-e59"/>
-    </inferredMetricsTieBreakers>
 </document>
