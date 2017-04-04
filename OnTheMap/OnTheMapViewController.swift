@@ -1,3 +1,4 @@
+
 //
 //  OnTheMapViewController.swift
 //  OnTheMap
@@ -10,7 +11,26 @@ import UIKit
 
 class OnTheMapViewController: UIViewController {
     
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ParseStudent().getStudentLocations(){(result,errorString) in
+            
+            if errorString == nil
+            {
+                do{
+                    let resultDictionary = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! [String:AnyObject]
+                    let resultArray = resultDictionary["results"] as! [[String:AnyObject]]
+                }
+                catch{}
+            }
+            else
+            {
+                print(errorString!)
+            }
+        }
+    }
+    
     @IBAction func logOutButtonPressed(_ sender: Any) {
         UdacityUser().udacityLogOut(){(result,errorString)
             in
