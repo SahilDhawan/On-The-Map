@@ -11,12 +11,15 @@ import UIKit
 import MapKit
 
 class OnTheMapViewController: UIViewController {
-    
+   
+    let activityView : UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+
     @IBOutlet weak var mapView: MKMapView!
     var resultArray : [[String:AnyObject]] = [[:]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityViewIndicator()
         ParseStudent().getStudentLocations(){(result,errorString) in
             
             if errorString == nil
@@ -25,6 +28,8 @@ class OnTheMapViewController: UIViewController {
                     let resultDictionary = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! [String:AnyObject]
                     self.resultArray = resultDictionary["results"] as! [[String:AnyObject]]
                     DispatchQueue.main.async {
+                        self.activityView.stopAnimating()
+                        self.mapView.isUserInteractionEnabled = true
                         self.addingAnnotations()
                     }
                 }
@@ -36,8 +41,17 @@ class OnTheMapViewController: UIViewController {
             }
         }
     }
+    func activityViewIndicator()
+    {
+        activityView.center = CGPoint.init(x: self.view.frame.width/2, y: self.view.frame.height/2)
+        activityView.alpha = 1
+        activityView.startAnimating()
+        self.view.addSubview(activityView)
+        self.mapView.isUserInteractionEnabled = false
+    }
     
     @IBAction func logOutButtonPressed(_ sender: Any) {
+        activityViewIndicator()
         UdacityUser().udacityLogOut(){(result,errorString)
             in
             if errorString == nil
@@ -58,11 +72,32 @@ class OnTheMapViewController: UIViewController {
     {
         for studentData in resultArray
         {
+            print(studentData)
             let latitude = studentData["latitude"] as! CLLocationDegrees
-            let longitude = studentData["longitude"] as! CLLocationDegrees
+            
+            //Apparently they can't spell longitude
+            let longitude1 = studentData["longitude"] as? CLLocationDegrees
+            let longitude2 = studentData["longtiude"] as? CLLocationDegrees
+            
             let annotation = MKPointAnnotation.init()
-            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+            let firstName = studentData["firstName"] as! String
+            annotation.title = firstName
+            let mediaUrl  = studentData["mediaURL"] as? String
+            annotation.subtitle = mediaUrl
+            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitudeCheck(longitude1, longitude2))
+            
             self.mapView.addAnnotation(annotation)
+        }
+    }
+    func longitudeCheck( _ long1 : CLLocationDegrees?, _ long2 : CLLocationDegrees?) -> CLLocationDegrees
+    {
+        if long1 == nil
+        {
+            return long2!
+        }
+        else
+        {
+            return long1!
         }
     }
 }
