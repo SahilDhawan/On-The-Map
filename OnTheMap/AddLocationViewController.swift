@@ -19,6 +19,17 @@ class AddLocationViewController: UIViewController {
         locationTextField.delegate = self
         websiteTextField.delegate = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     func showAlert(_ msg: String)
     {
         let viewController = UIAlertController.init(title: "OnTheMap", message: msg, preferredStyle: .alert)
@@ -26,37 +37,47 @@ class AddLocationViewController: UIViewController {
         viewController.addAction(action)
         self.present(viewController, animated: true, completion: nil)
     }
+    
     @IBAction func FindLocationPressed(_ sender: Any) {
-        guard locationTextField.text == nil else
+        guard locationTextField.text == nil, websiteTextField.text == nil else
         {
             let geocoder = CLGeocoder()
-            geocoder.geocodeAddressString(locationTextField.text!, completionHandler: { (placemark, error) in
-                if error != nil
-                {
-                    self.showAlert("Invalid Location")
-                }
-                else
-                {
-                    if let place = placemark, (placemark?.count)! > 0
+            let text = websiteTextField.text!
+            if(text.contains("https://www.") || (text.contains("http://www.")))
+            {
+                StudentDetails.webURL = websiteTextField.text!
+                geocoder.geocodeAddressString(locationTextField.text!, completionHandler: { (placemark, error) in
+                    if error != nil
                     {
-                        var location : CLLocation?
-                        location = place.first?.location
-                        self.performSegue(withIdentifier: "UserCoordinate", sender: location)
+                        self.showAlert("Invalid Location")
                     }
-                }
-            })
+                    else
+                    {
+                        if let place = placemark, (placemark?.count)! > 0
+                        {
+                            var location : CLLocation?
+                            location = place.first?.location
+                            StudentDetails.studentLocation = location!.coordinate
+                            self.performSegue(withIdentifier: "UserCoordinate", sender: location)
+                        }
+                    }
+                })
+            }
+            else
+            {
+                showAlert("website link is not valid")
+                return
+            }
             return
         }
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "UserCoordinate"
-        {
-        let location = sender as! CLLocation
-        let viewController = segue.destination as! UserCoordinateViewController
-            viewController.location = location
-        }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        _ = self.navigationController?.popViewController(animated: true)
     }
+    
 }
+
 extension AddLocationViewController:UITextFieldDelegate
 {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

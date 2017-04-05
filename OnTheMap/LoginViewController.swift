@@ -54,12 +54,18 @@ class LoginViewController: UIViewController {
                     do
                     {
                         let dataDictionary = try JSONSerialization.jsonObject(with: newData!, options: .allowFragments) as! NSDictionary
+                        print(dataDictionary)
                         let sessionDictionary = dataDictionary["session"] as? NSDictionary
                         
                         if let session = sessionDictionary
                         {
                             let sessionId = session["id"] as! String
-                            UdacityUser().sessionId = sessionId
+                            UdacityUser.sessionId = sessionId
+                            let resultDict = dataDictionary["account"] as! [String:AnyObject?]
+                            let userId = resultDict["key"] as! String
+                            UdacityUser().gettingStudentDetails(userId, { (result, errorString) in
+                                //TODO
+                            })
                         }
                         else
                         {

@@ -14,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="p8j-QM-pCG">
             <objects>
-                <viewController id="LJd-vd-pwA" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUp" id="LJd-vd-pwA" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="elW-MJ-gMN"/>
                         <viewControllerLayoutGuide type="bottom" id="F57-jb-cun"/>
@@ -208,6 +208,7 @@
                             <barButtonItem systemItem="add" id="etK-R4-fss">
                                 <connections>
                                     <action selector="addLocationPressed:" destination="hgL-z1-9ma" id="RMu-2D-10v"/>
+                                    <segue destination="XQc-3k-El3" kind="show" id="hfe-VV-CGK"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="refresh" id="SUg-pp-7cU"/>
@@ -256,6 +257,7 @@
                             <barButtonItem systemItem="add" id="bc4-Ow-dpR">
                                 <connections>
                                     <action selector="addLocation:" destination="Pbd-v3-zyS" id="u17-wQ-dTm"/>
+                                    <segue destination="XQc-3k-El3" kind="show" id="gFT-Uv-xGE"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="refresh" id="GKW-zA-jbb"/>
@@ -270,7 +272,7 @@
             </objects>
             <point key="canvasLocation" x="2596" y="-392.65367316341832"/>
         </scene>
-        <!--Add Location View Controller-->
+        <!--Add Location-->
         <scene sceneID="Vnm-U4-2nX">
             <objects>
                 <viewController storyboardIdentifier="AddLocation" id="XQc-3k-El3" customClass="AddLocationViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -282,23 +284,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XrR-t9-e9w">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Adding Location" id="YMa-Ao-9a5">
-                                        <barButtonItem key="leftBarButtonItem" title="CANCEL" id="t77-by-VG0"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="Mpa-NN-jjk">
-                                <rect key="frame" x="142.5" y="120" width="90" height="100"/>
+                                <rect key="frame" x="142.5" y="164" width="90" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="HuE-r6-rZ2"/>
                                     <constraint firstAttribute="height" constant="100" id="UQB-zx-kde"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="CGd-Uz-mXY">
-                                <rect key="frame" x="36" y="270" width="303" height="107"/>
+                                <rect key="frame" x="36" y="314" width="303" height="107"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OUr-zx-HsG">
                                         <rect key="frame" x="0.0" y="0.0" width="303" height="35"/>
@@ -331,16 +325,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="CGd-Uz-mXY" firstAttribute="top" secondItem="Mpa-NN-jjk" secondAttribute="bottom" constant="50" id="0va-0P-dFj"/>
-                            <constraint firstAttribute="trailing" secondItem="XrR-t9-e9w" secondAttribute="trailing" id="BS4-GW-wBT"/>
                             <constraint firstItem="CGd-Uz-mXY" firstAttribute="leading" secondItem="LCT-IU-TDT" secondAttribute="leadingMargin" constant="20" id="DpJ-PP-whd"/>
                             <constraint firstItem="Mpa-NN-jjk" firstAttribute="centerX" secondItem="LCT-IU-TDT" secondAttribute="centerX" id="Sgc-l3-2he"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CGd-Uz-mXY" secondAttribute="trailing" constant="20" id="aR8-Mj-P5J"/>
                             <constraint firstItem="Mpa-NN-jjk" firstAttribute="top" secondItem="3nf-TQ-9gn" secondAttribute="bottom" constant="100" id="am8-gm-upl"/>
-                            <constraint firstItem="XrR-t9-e9w" firstAttribute="top" secondItem="LCT-IU-TDT" secondAttribute="top" constant="20" id="oRx-AX-DP6"/>
-                            <constraint firstItem="XrR-t9-e9w" firstAttribute="leading" secondItem="LCT-IU-TDT" secondAttribute="leading" id="uX2-Oa-dit"/>
                         </constraints>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="ZnN-o9-6zb"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Add Location" id="9Vy-Sa-h4u">
+                        <barButtonItem key="leftBarButtonItem" title="CANCEL" id="Glf-XJ-a7r">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="XQc-3k-El3" id="u3i-by-7gE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="locationTextField" destination="OUr-zx-HsG" id="LHd-kH-Jre"/>
@@ -350,7 +350,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="377-GZ-xsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3490" y="-63"/>
+            <point key="canvasLocation" x="3430" y="-134"/>
         </scene>
         <!--User Coordinate View Controller-->
         <scene sceneID="6Vd-se-lDM">
@@ -392,7 +392,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="who-66-6fQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4301" y="-67"/>
+            <point key="canvasLocation" x="4188" y="-134"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="EO6-Jr-rD7">
@@ -457,4 +457,7 @@
         <image name="icon_world" width="52" height="67"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="hfe-VV-CGK"/>
+    </inferredMetricsTieBreakers>
 </document>

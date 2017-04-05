@@ -10,18 +10,17 @@
 		BA1FC4A61E92D98000A405EB /* OnTheMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1FC4A51E92D98000A405EB /* OnTheMapViewController.swift */; };
 		BA1FC4A81E92D99200A405EB /* OnTheTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1FC4A71E92D99200A405EB /* OnTheTableViewController.swift */; };
 		BA1FC4AA1E92DAE700A405EB /* UdacityUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1FC4A91E92DAE700A405EB /* UdacityUser.swift */; };
-		BA430ECB1E93866500F92D5E /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA430ECA1E93866500F92D5E /* UdacityConstants.swift */; };
 		BA430ECD1E93867500F92D5E /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA430ECC1E93867500F92D5E /* ParseConstants.swift */; };
 		BA430ECF1E93877400F92D5E /* ParseStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA430ECE1E93877400F92D5E /* ParseStudent.swift */; };
 		BABE97421E94D0EA0087ED9F /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE97411E94D0EA0087ED9F /* AddLocationViewController.swift */; };
 		BABE97441E94E5820087ED9F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABE97431E94E5810087ED9F /* CoreLocation.framework */; };
 		BABE97461E94F3780087ED9F /* UserCoordinateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE97451E94F3780087ED9F /* UserCoordinateViewController.swift */; };
+		BABE97481E9549B40087ED9F /* StudentDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE97471E9549B40087ED9F /* StudentDetails.swift */; };
 		BAC9EE471E92BDB300DE90FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC9EE461E92BDB300DE90FA /* AppDelegate.swift */; };
 		BAC9EE491E92BDB300DE90FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC9EE481E92BDB300DE90FA /* LoginViewController.swift */; };
 		BAC9EE4C1E92BDB300DE90FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAC9EE4A1E92BDB300DE90FA /* Main.storyboard */; };
 		BAC9EE4E1E92BDB300DE90FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC9EE4D1E92BDB300DE90FA /* Assets.xcassets */; };
 		BAC9EE511E92BDB300DE90FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAC9EE4F1E92BDB300DE90FA /* LaunchScreen.storyboard */; };
-		BAC9EE5D1E92C0E900DE90FA /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC9EE5C1E92C0E900DE90FA /* ViewConstants.swift */; };
 		BAC9EE601E92C7F700DE90FA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAC9EE5F1E92C7F600DE90FA /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,12 +28,12 @@
 		BA1FC4A51E92D98000A405EB /* OnTheMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheMapViewController.swift; sourceTree = "<group>"; };
 		BA1FC4A71E92D99200A405EB /* OnTheTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheTableViewController.swift; sourceTree = "<group>"; };
 		BA1FC4A91E92DAE700A405EB /* UdacityUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityUser.swift; sourceTree = "<group>"; };
-		BA430ECA1E93866500F92D5E /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		BA430ECC1E93867500F92D5E /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		BA430ECE1E93877400F92D5E /* ParseStudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseStudent.swift; sourceTree = "<group>"; };
 		BABE97411E94D0EA0087ED9F /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		BABE97431E94E5810087ED9F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		BABE97451E94F3780087ED9F /* UserCoordinateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCoordinateViewController.swift; sourceTree = "<group>"; };
+		BABE97471E9549B40087ED9F /* StudentDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentDetails.swift; sourceTree = "<group>"; };
 		BAC9EE431E92BDB300DE90FA /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC9EE461E92BDB300DE90FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAC9EE481E92BDB300DE90FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -42,7 +41,6 @@
 		BAC9EE4D1E92BDB300DE90FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BAC9EE501E92BDB300DE90FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BAC9EE521E92BDB300DE90FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BAC9EE5C1E92C0E900DE90FA /* ViewConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		BAC9EE5F1E92C7F600DE90FA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -80,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				BAC9EE591E92BE2B00DE90FA /* Model */,
-				BAC9EE5A1E92BE3800DE90FA /* View */,
 				BAC9EE5B1E92BE3D00DE90FA /* Controller */,
 				BAC9EE581E92BE1400DE90FA /* Assets */,
 				BAC9EE521E92BDB300DE90FA /* Info.plist */,
@@ -102,27 +99,19 @@
 			isa = PBXGroup;
 			children = (
 				BA1FC4A91E92DAE700A405EB /* UdacityUser.swift */,
-				BA430ECA1E93866500F92D5E /* UdacityConstants.swift */,
 				BA430ECC1E93867500F92D5E /* ParseConstants.swift */,
 				BA430ECE1E93877400F92D5E /* ParseStudent.swift */,
+				BABE97471E9549B40087ED9F /* StudentDetails.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		BAC9EE5A1E92BE3800DE90FA /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BAC9EE5C1E92C0E900DE90FA /* ViewConstants.swift */,
-			);
-			name = View;
 			sourceTree = "<group>";
 		};
 		BAC9EE5B1E92BE3D00DE90FA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BAC9EE461E92BDB300DE90FA /* AppDelegate.swift */,
 				BAC9EE481E92BDB300DE90FA /* LoginViewController.swift */,
 				BA1FC4A71E92D99200A405EB /* OnTheTableViewController.swift */,
-				BAC9EE461E92BDB300DE90FA /* AppDelegate.swift */,
 				BA1FC4A51E92D98000A405EB /* OnTheMapViewController.swift */,
 				BABE97411E94D0EA0087ED9F /* AddLocationViewController.swift */,
 				BABE97451E94F3780087ED9F /* UserCoordinateViewController.swift */,
@@ -213,10 +202,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA1FC4AA1E92DAE700A405EB /* UdacityUser.swift in Sources */,
-				BA430ECB1E93866500F92D5E /* UdacityConstants.swift in Sources */,
 				BABE97461E94F3780087ED9F /* UserCoordinateViewController.swift in Sources */,
-				BAC9EE5D1E92C0E900DE90FA /* ViewConstants.swift in Sources */,
 				BAC9EE491E92BDB300DE90FA /* LoginViewController.swift in Sources */,
+				BABE97481E9549B40087ED9F /* StudentDetails.swift in Sources */,
 				BA1FC4A61E92D98000A405EB /* OnTheMapViewController.swift in Sources */,
 				BAC9EE471E92BDB300DE90FA /* AppDelegate.swift in Sources */,
 				BA1FC4A81E92D99200A405EB /* OnTheTableViewController.swift in Sources */,

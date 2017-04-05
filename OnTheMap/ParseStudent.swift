@@ -7,16 +7,9 @@
 //
 
 import Foundation
-import UIKit
 
 class ParseStudent:NSObject
 {
-    override init()
-    {
-        super.init()
-    }
-    
-    
     func getStudentLocations(completionHandler:@escaping(_ result:Data?, _ error: String?) -> Void)
     {
         let request = NSMutableURLRequest.init(url: URL(string:"https://parse.udacity.com/parse/classes/StudentLocation")!)

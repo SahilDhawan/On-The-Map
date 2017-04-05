@@ -72,7 +72,7 @@ class OnTheMapViewController: UIViewController {
     {
         for studentData in resultArray
         {
-            print(studentData)
+            
             let latitude = studentData["latitude"] as! CLLocationDegrees
             
             //Apparently they can't spell longitude
@@ -100,8 +100,5 @@ class OnTheMapViewController: UIViewController {
             return long1!
         }
     }
-    @IBAction func addLocation(_ sender: Any) {
-        let viewController = storyboard?.instantiateViewController(withIdentifier: "AddLocation") as! AddLocationViewController
-        self.present(viewController,animated:true)
-    }
+
 }
