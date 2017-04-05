@@ -47,7 +47,7 @@ class OnTheMapViewController: UIViewController {
         activityView.alpha = 1
         activityView.startAnimating()
         self.view.addSubview(activityView)
-        self.mapView.isUserInteractionEnabled = false
+        self.mapView.isOpaque = true
     }
     
     @IBAction func logOutButtonPressed(_ sender: Any) {
@@ -99,5 +99,9 @@ class OnTheMapViewController: UIViewController {
         {
             return long1!
         }
+    }
+    @IBAction func addLocation(_ sender: Any) {
+        let viewController = storyboard?.instantiateViewController(withIdentifier: "AddLocation") as! AddLocationViewController
+        self.present(viewController,animated:true)
     }
 }

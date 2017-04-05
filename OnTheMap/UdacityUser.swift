@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import MapKit
+import UIKit
+
 
 class UdacityUser:NSObject
 {

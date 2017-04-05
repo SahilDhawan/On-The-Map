@@ -71,6 +71,10 @@ class OnTheTableViewController: UIViewController {
             }
         }
     }
+    @IBAction func addLocationPressed(_ sender: Any) {
+        let viewController = storyboard?.instantiateViewController(withIdentifier: "AddLocation") as! AddLocationViewController
+        self.present(viewController,animated:true)
+    }
 }
 extension OnTheTableViewController:UITableViewDataSource
 {
