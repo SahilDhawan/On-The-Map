@@ -15,8 +15,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var debugLabel: UILabel!
     
     override func viewDidLoad() {
@@ -64,7 +62,23 @@ class LoginViewController: UIViewController {
                             let resultDict = dataDictionary["account"] as! [String:AnyObject?]
                             let userId = resultDict["key"] as! String
                             UdacityUser().gettingStudentDetails(userId, { (result, errorString) in
-                                //TODO
+                                if errorString == nil
+                                {
+                                    do
+                                    {
+                                        let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
+                                        let userDict = dataDict["user"] as! [String:AnyObject]
+                                        StudentDetails.lastName = userDict["last_name"] as! String
+                                        StudentDetails.userId = userId
+                                        StudentDetails.firstName = userDict["first_name"] as! String
+                                        print(StudentDetails.firstName + " " + StudentDetails.lastName)
+                                    }
+                                    catch{}
+                                }
+                                else
+                                {
+                                    print(errorString!)
+                                }
                             })
                         }
                         else

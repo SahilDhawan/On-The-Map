@@ -38,5 +38,6 @@ class UserCoordinateViewController: UIViewController {
     
     @IBAction func finishButtonPressed(_ sender: Any) {
         _ = self.navigationController?.popToRootViewController(animated: true)
+       ParseStudent().postingStudentDetails()
     }
 }

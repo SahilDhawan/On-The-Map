@@ -58,6 +58,8 @@ class AddLocationViewController: UIViewController {
                             var location : CLLocation?
                             location = place.first?.location
                             StudentDetails.studentLocation = location!.coordinate
+                            StudentDetails.webURL = self.websiteTextField.text!
+                            StudentDetails.mapString = self.locationTextField.text!
                             self.performSegue(withIdentifier: "UserCoordinate", sender: location)
                         }
                     }

@@ -15,6 +15,7 @@ class UdacityUser:NSObject
 {
     
     static var sessionId : String =  ""
+    static var userId : String = ""
     
     
     func udacityLogIn(_ email : String, _ password : String , completionHandler : @escaping (_ result:Data?, _ error : String?) ->Void)
@@ -49,7 +50,6 @@ class UdacityUser:NSObject
             {
                 let range = Range(uncheckedBounds: (5, data!.count))
                 let newData = data?.subdata(in: range) /* subset response data! */
-                print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
                 completionHandler(newData,nil)
             }
             else
