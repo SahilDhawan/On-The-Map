@@ -11,36 +11,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="p8j-QM-pCG">
-            <objects>
-                <viewController storyboardIdentifier="SignUp" id="LJd-vd-pwA" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="elW-MJ-gMN"/>
-                        <viewControllerLayoutGuide type="bottom" id="F57-jb-cun"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xhA-Ru-j31">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q5M-hM-Ohf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="q5M-hM-Ohf" secondAttribute="trailing" id="BwC-E1-0O6"/>
-                            <constraint firstItem="q5M-hM-Ohf" firstAttribute="leading" secondItem="xhA-Ru-j31" secondAttribute="leading" id="ZeY-IG-Jzz"/>
-                            <constraint firstAttribute="bottom" secondItem="q5M-hM-Ohf" secondAttribute="bottom" id="qNF-9v-MSN"/>
-                            <constraint firstItem="q5M-hM-Ohf" firstAttribute="top" secondItem="xhA-Ru-j31" secondAttribute="top" id="xbz-G7-dST"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="egF-oE-YY5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-921" y="-67"/>
-        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -108,9 +78,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvt-Xw-nVs">
                                         <rect key="frame" x="185.5" y="0.0" width="55" height="30"/>
                                         <state key="normal" title="Sign Up"/>
-                                        <connections>
-                                            <segue destination="LJd-vd-pwA" kind="show" id="vVQ-ZW-m4t"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -163,18 +130,18 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pSn-B1-qPx" id="d9v-VX-akc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Pd-D1-RTC">
-                                                    <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ChB-5V-e0s">
-                                                    <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -211,7 +178,11 @@
                                     <segue destination="XQc-3k-El3" kind="show" id="hfe-VV-CGK"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="SUg-pp-7cU"/>
+                            <barButtonItem systemItem="refresh" id="SUg-pp-7cU">
+                                <connections>
+                                    <action selector="refreshButtonPressed:" destination="hgL-z1-9ma" id="Vz3-bt-hSk"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -260,7 +231,11 @@
                                     <segue destination="XQc-3k-El3" kind="show" id="gFT-Uv-xGE"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="GKW-zA-jbb"/>
+                            <barButtonItem systemItem="refresh" id="GKW-zA-jbb">
+                                <connections>
+                                    <action selector="refreshButtonPressed:" destination="Pbd-v3-zyS" id="w8M-hk-dLh"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -355,7 +330,7 @@
         <!--User Coordinate View Controller-->
         <scene sceneID="6Vd-se-lDM">
             <objects>
-                <viewController storyboardIdentifier="UserCoordinate" id="rfj-OY-L25" customClass="UserCoordinateViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserCoordinate" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rfj-OY-L25" customClass="UserCoordinateViewController" customModule="OnTheMap" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pUp-w2-ZrS"/>
                         <viewControllerLayoutGuide type="bottom" id="I0V-5R-9Bk"/>
@@ -365,7 +340,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XBZ-dd-hQM">
-                                <rect key="frame" x="0.0" y="20" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYf-4C-TyE">
                                 <rect key="frame" x="46" y="543" width="283" height="30"/>
@@ -373,6 +348,9 @@
                                 <state key="normal" title="FINISH">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="finishButtonPressed:" destination="rfj-OY-L25" eventType="touchUpInside" id="6L6-pa-pC9"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

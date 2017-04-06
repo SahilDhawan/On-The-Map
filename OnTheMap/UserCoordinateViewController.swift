@@ -11,17 +11,15 @@ import MapKit
 
 class UserCoordinateViewController: UIViewController {
     
-    @IBOutlet weak var mapView: MKMapView!
-
     
-
+    @IBOutlet weak var mapView: MKMapView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isHidden = false
@@ -36,5 +34,9 @@ class UserCoordinateViewController: UIViewController {
         let region = MKCoordinateRegionMakeWithDistance(StudentDetails.studentLocation, 100, 100)
         let adjustedRegion = self.mapView.regionThatFits(region)
         self.mapView.setRegion(adjustedRegion, animated: true)
+    }
+    
+    @IBAction func finishButtonPressed(_ sender: Any) {
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
 }

@@ -16,6 +16,13 @@ class OnTheTableViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        getDataFromParse()
+    }
+    func getDataFromParse()
+    {
         activityViewIndicator()
         ParseStudent().getStudentLocations(completionHandler: {(data,errorString) in
             if errorString == nil
@@ -43,6 +50,7 @@ class OnTheTableViewController: UIViewController {
             }
             
         })
+        
     }
     func activityViewIndicator()
     {
@@ -71,7 +79,10 @@ class OnTheTableViewController: UIViewController {
             }
         }
     }
-
+    
+    @IBAction func refreshButtonPressed(_ sender: Any) {
+        getDataFromParse()
+    }
 }
 extension OnTheTableViewController:UITableViewDataSource
 {
@@ -82,11 +93,11 @@ extension OnTheTableViewController:UITableViewDataSource
         let tableCell = tableView.dequeueReusableCell(withIdentifier: "OnTheTableCell")
         let studentData = resultArray[indexPath.row]
         print(studentData)
-            let firstName : String? = (studentData["firstName"] as? String)
-            let mediaURL : String? = (studentData["mediaURL"] as? String)
+        let firstName : String? = (studentData["firstName"] as? String)
+        let mediaURL : String? = (studentData["mediaURL"] as? String)
         
-            tableCell?.textLabel?.text = firstName
-            tableCell?.detailTextLabel?.text = mediaURL
+        tableCell?.textLabel?.text = firstName
+        tableCell?.detailTextLabel?.text = mediaURL
         if firstName != nil
         {
             tableCell?.imageView?.image = UIImage(named:"icon_pin")

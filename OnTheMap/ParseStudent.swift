@@ -28,4 +28,14 @@ class ParseStudent:NSObject
         }
         task.resume()
     }
+    
+    func postingStudentDetails(completionHandler:@escaping(_ result : Data?, _ errorString : String?)-> Void)
+    {
+        let request = NSMutableURLRequest(url: URL(string:"https://parse.udacity.com/parse/classes/StudentLocation")!)
+        request.httpMethod = "POST"
+        request.addValue(ParseConstants.apiKey, forHTTPHeaderField: ParseConstants.apiHeader)
+        request.addValue(ParseConstants.applicationId, forHTTPHeaderField: ParseConstants.applicationHeader)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+    }
 }

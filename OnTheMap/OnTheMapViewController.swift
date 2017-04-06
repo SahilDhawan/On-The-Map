@@ -11,14 +11,21 @@ import UIKit
 import MapKit
 
 class OnTheMapViewController: UIViewController {
-   
+    
     let activityView : UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
-
+    
     @IBOutlet weak var mapView: MKMapView!
     var resultArray : [[String:AnyObject]] = [[:]]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        
+        getDataFromParse()
+    }
+    func getDataFromParse()
+    {
         activityViewIndicator()
         ParseStudent().getStudentLocations(){(result,errorString) in
             
@@ -89,6 +96,9 @@ class OnTheMapViewController: UIViewController {
             self.mapView.addAnnotation(annotation)
         }
     }
+    @IBAction func refreshButtonPressed(_ sender: Any) {
+        getDataFromParse()
+    }
     func longitudeCheck( _ long1 : CLLocationDegrees?, _ long2 : CLLocationDegrees?) -> CLLocationDegrees
     {
         if long1 == nil
@@ -100,5 +110,5 @@ class OnTheMapViewController: UIViewController {
             return long1!
         }
     }
-
+    
 }
