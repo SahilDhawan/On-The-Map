@@ -19,7 +19,7 @@ class UserCoordinateViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isHidden = false
@@ -38,6 +38,30 @@ class UserCoordinateViewController: UIViewController {
     
     @IBAction func finishButtonPressed(_ sender: Any) {
         _ = self.navigationController?.popToRootViewController(animated: true)
-       ParseStudent().postingStudentDetails()
+        ParseStudent().postingStudentDetails { (result, errorString) in
+            if errorString == nil
+            {
+                do
+                {
+                    let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
+                    let objectId = dataDict["objectId"] as! String
+                    StudentDetails.objectId = objectId
+                    print(objectId)
+                }
+                catch{}
+            }
+        }
+        ParseStudent().puttingStudentDetails { (result, errorString) in
+            if errorString == nil
+            {
+                do
+                {
+                    let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
+                    print(dataDict)
+                }
+                catch{}
+            }
+            
+        }
     }
 }

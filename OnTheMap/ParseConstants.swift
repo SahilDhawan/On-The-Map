@@ -14,5 +14,6 @@ extension ParseStudent
         static let applicationId = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let apiHeader = "X-Parse-REST-API-Key"
         static let applicationHeader = "X-Parse-Application-Id"
+        static let urlString = "https://parse.udacity.com/parse/classes/StudentLocation/"
     }
 }
