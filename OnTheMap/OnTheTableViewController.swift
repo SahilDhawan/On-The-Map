@@ -105,3 +105,12 @@ extension OnTheTableViewController:UITableViewDataSource
         return tableCell!
     }
 }
+extension OnTheTableViewController:UITableViewDelegate
+{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let studentData = resultArray[indexPath.row]
+        let mediaUrl :String? = studentData["mediaURL"] as? String
+        let url : URL = URL(string: mediaUrl!)!
+        UIApplication.shared.open(url, options:[:] , completionHandler: nil)
+    }
+}
