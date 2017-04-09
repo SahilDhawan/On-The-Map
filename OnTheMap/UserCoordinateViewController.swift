@@ -38,30 +38,45 @@ class UserCoordinateViewController: UIViewController {
     
     @IBAction func finishButtonPressed(_ sender: Any) {
         _ = self.navigationController?.popToRootViewController(animated: true)
-        ParseStudent().postingStudentDetails { (result, errorString) in
-            if errorString == nil
-            {
-                do
+        if !StudentDetails.studentDetail
+        {
+            //setting flag to true
+            StudentDetails.studentDetail = true
+            ParseStudent().postingStudentDetails { (result, errorString) in
+                if errorString == nil
                 {
-                    let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
-                    let objectId = dataDict["objectId"] as! String
-                    StudentDetails.objectId = objectId
-                    print(objectId)
+                    do
+                    {
+                        let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
+                        print(dataDict)
+                        let objectId = dataDict["objectId"] as! String
+                        StudentDetails.objectId = objectId
+                    }
+                    catch{}
                 }
-                catch{}
-            }
-        }
-        ParseStudent().puttingStudentDetails { (result, errorString) in
-            if errorString == nil
-            {
-                do
-                {
-                    let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
-                    print(dataDict)
-                }
-                catch{}
             }
             
         }
+        else
+        {
+            print(StudentDetails.objectId)
+            ParseStudent().puttingStudentDetails { (result, errorString) in
+                
+                if errorString == nil
+                {
+                    do
+                    {
+                        let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
+                        print(dataDict)
+                    }
+                    catch{}
+                }
+            }
+        }
     }
 }
+
+
+
+
+

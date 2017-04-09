@@ -70,7 +70,7 @@ class ParseStudent:NSObject
         urlString.append(StudentDetails.objectId)
         let url = URL(string:urlString)
         let request = NSMutableURLRequest(url: url!)
-        request.httpMethod = "POST"
+        request.httpMethod = "PUT"
         request.addValue(ParseConstants.apiKey, forHTTPHeaderField: ParseConstants.apiHeader)
         request.addValue(ParseConstants.applicationId, forHTTPHeaderField: ParseConstants.applicationHeader)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -86,6 +86,7 @@ class ParseStudent:NSObject
         {
             let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
             request.httpBody = jsonData
+            print(jsonData)
         }
         catch{}
         let session = URLSession.shared
@@ -99,6 +100,5 @@ class ParseStudent:NSObject
             }
         }
         task.resume()
-
     }
 }

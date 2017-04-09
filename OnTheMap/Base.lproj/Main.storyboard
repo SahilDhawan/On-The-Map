@@ -31,7 +31,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="3Rz-WX-kqK">
-                                <rect key="frame" x="36" y="270" width="303" height="115"/>
+                                <rect key="frame" x="36" y="270" width="303" height="155"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lac-JU-cke">
                                         <rect key="frame" x="0.0" y="0.0" width="303" height="35"/>
@@ -58,10 +58,14 @@
                                             <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mai-7M-ds3"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YzU-TF-o3n" customClass="FBSDKLoginButton">
+                                        <rect key="frame" x="0.0" y="120" width="303" height="35"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYk-OU-QBO">
-                                <rect key="frame" x="187" y="485" width="0.0" height="0.0"/>
+                                <rect key="frame" x="187" y="525" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -82,6 +86,7 @@
                     <connections>
                         <outlet property="debugLabel" destination="cYk-OU-QBO" id="lg8-S9-LLW"/>
                         <outlet property="emailTextField" destination="lac-JU-cke" id="grp-ZE-36O"/>
+                        <outlet property="facebookLogin" destination="YzU-TF-o3n" id="4Q8-Nb-0dE"/>
                         <outlet property="logInButton" destination="X7C-JZ-btV" id="ghg-5j-S9a"/>
                         <outlet property="passwordTextField" destination="3jn-9F-Yaw" id="43s-KE-N85"/>
                         <segue destination="Dw0-1U-5nN" kind="show" identifier="loginSegue" id="BYC-yF-e59"/>
@@ -155,8 +160,7 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="etK-R4-fss">
                                 <connections>
-                                    <action selector="addLocationPressed:" destination="hgL-z1-9ma" id="RMu-2D-10v"/>
-                                    <segue destination="XQc-3k-El3" kind="show" id="hfe-VV-CGK"/>
+                                    <action selector="addLocation:" destination="hgL-z1-9ma" id="I2z-ah-Ytp"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="refresh" id="SUg-pp-7cU">
@@ -168,6 +172,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Wpu-Bx-4zw" id="4vO-b5-zxS"/>
+                        <segue destination="XQc-3k-El3" kind="show" identifier="AddLocation" id="2vL-PI-Vqv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FuX-om-mfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -208,8 +213,7 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="bc4-Ow-dpR">
                                 <connections>
-                                    <action selector="addLocation:" destination="Pbd-v3-zyS" id="u17-wQ-dTm"/>
-                                    <segue destination="XQc-3k-El3" kind="show" id="gFT-Uv-xGE"/>
+                                    <action selector="addLocation:" destination="Pbd-v3-zyS" id="ScV-93-ej6"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="refresh" id="GKW-zA-jbb">
@@ -222,6 +226,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="trm-WA-hWF" id="SID-Wv-zbL"/>
+                        <segue destination="XQc-3k-El3" kind="show" identifier="AddLocation" id="z2s-RE-4ub"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suD-pP-8cT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -417,6 +422,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hfe-VV-CGK"/>
+        <segue reference="2vL-PI-Vqv"/>
     </inferredMetricsTieBreakers>
 </document>

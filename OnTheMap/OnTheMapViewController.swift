@@ -24,6 +24,9 @@ class OnTheMapViewController: UIViewController {
         
         getDataFromParse()
     }
+    
+    
+    
     func getDataFromParse()
     {
         activityViewIndicator()
@@ -48,6 +51,7 @@ class OnTheMapViewController: UIViewController {
             }
         }
     }
+    
     func activityViewIndicator()
     {
         activityView.center = CGPoint.init(x: self.view.frame.width/2, y: self.view.frame.height/2)
@@ -75,6 +79,7 @@ class OnTheMapViewController: UIViewController {
             }
         }
     }
+    
     func addingAnnotations()
     {
         for studentData in resultArray
@@ -96,9 +101,11 @@ class OnTheMapViewController: UIViewController {
             self.mapView.addAnnotation(annotation)
         }
     }
+    
     @IBAction func refreshButtonPressed(_ sender: Any) {
         getDataFromParse()
     }
+    
     func longitudeCheck( _ long1 : CLLocationDegrees?, _ long2 : CLLocationDegrees?) -> CLLocationDegrees
     {
         if long1 == nil
@@ -110,5 +117,24 @@ class OnTheMapViewController: UIViewController {
             return long1!
         }
     }
-    
+    @IBAction func addLocation(_ sender: Any) {
+        //over write alert
+        if !StudentDetails.studentDetail
+        {
+            performSegue(withIdentifier: "AddLocation", sender: self)
+        }
+        else
+        {
+            let msgString : String = "Details for student " + StudentDetails.firstName + " " + StudentDetails.lastName + " already exists"
+            let controller = UIAlertController.init(title: "OnTheMap", message: msgString, preferredStyle: .alert)
+            let dismissAction = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
+            let overwriteActon  = UIAlertAction.init(title: "Overwrite", style: .default, handler: { (action) in
+                self.performSegue(withIdentifier: "AddLocation", sender: self)
+            })
+            controller.addAction(overwriteActon)
+            controller.addAction(dismissAction)
+            self.present(controller, animated: true, completion: nil)
+            
+        }
+    }
 }

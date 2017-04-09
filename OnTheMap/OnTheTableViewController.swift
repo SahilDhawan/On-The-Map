@@ -80,6 +80,25 @@ class OnTheTableViewController: UIViewController {
         }
     }
     
+    @IBAction func addLocation(_ sender: Any) {
+        if !StudentDetails.studentDetail
+        {
+            performSegue(withIdentifier: "AddLocation", sender: self)
+            StudentDetails.studentDetail = true
+        }
+        else
+        {
+            let msgString : String = "Details for student " + StudentDetails.firstName + " " + StudentDetails.lastName + " already exists"
+            let controller = UIAlertController.init(title: "OnTheMap", message: msgString, preferredStyle: .alert)
+            let dismissAction = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
+            let overwriteActon  = UIAlertAction.init(title: "Overwrite", style: .default, handler: { (action) in
+                self.performSegue(withIdentifier: "AddLocation", sender: self)
+            })
+            controller.addAction(overwriteActon)
+            controller.addAction(dismissAction)
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
     @IBAction func refreshButtonPressed(_ sender: Any) {
         getDataFromParse()
     }

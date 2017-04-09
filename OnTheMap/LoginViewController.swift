@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
@@ -16,12 +17,20 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var debugLabel: UILabel!
+    @IBOutlet weak var facebookLogin: FBSDKLoginButton!
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        facebookLogin.readPermissions = ["public_profile","email"]
+        facebookLogin.delegate = self
+        
+        
+        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -84,7 +93,7 @@ class LoginViewController: UIViewController {
                         else
                         {
                             DispatchQueue.main.async {
-                                self.debugLabel.text = "Invalid Login!"
+                                self.showAlert("Invalid Login !")
                                 self.activityView.stopAnimating()
                                 self.logInButton.isEnabled = true
                             }
@@ -105,11 +114,30 @@ class LoginViewController: UIViewController {
             return
         }
     }
+    func showAlert(_ msg : String)
+    {
+        let controller = UIAlertController.init(title: "OnTheMap", message: msg, preferredStyle: .alert)
+        let action = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
+        controller.addAction(action)
+        self.present(controller, animated: true, completion: nil)
+    }
 }
 extension LoginViewController : UITextFieldDelegate
 {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+extension LoginViewController: FBSDKLoginButtonDelegate
+{
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        let tokenString = result.token.tokenString
+//        Facebook().postingSession(tokenString!) { (result, errorString) in
+//            //TODO
+//        }
+    }
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        //TODO
     }
 }

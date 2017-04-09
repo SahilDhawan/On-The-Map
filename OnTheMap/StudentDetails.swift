@@ -18,6 +18,7 @@ struct StudentDetails
     static var mapString : String = ""
     static var webURL:String = ""
     static var studentLocation : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude:0,longitude:0)
-    static var createdAt : NSDate = NSDate()
-    static var updatedAt : NSDate = NSDate()
+    static var createdAt : Date = Date()
+    static var updatedAt : Date = Date()
+    static var studentDetail : Bool = false
 }
