@@ -8,6 +8,8 @@
 
 import UIKit
 import FBSDKLoginKit
+import FBSDKShareKit
+import FBSDKCoreKit
 
 class LoginViewController: UIViewController {
     
@@ -19,7 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var debugLabel: UILabel!
     @IBOutlet weak var facebookLogin: FBSDKLoginButton!
     
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
@@ -27,10 +29,7 @@ class LoginViewController: UIViewController {
         facebookLogin.readPermissions = ["public_profile","email"]
         facebookLogin.delegate = self
         
-        
-        
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -129,13 +128,32 @@ extension LoginViewController : UITextFieldDelegate
         return true
     }
 }
+
+//MARK: Facebook Login
 extension LoginViewController: FBSDKLoginButtonDelegate
 {
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        let tokenString = result.token.tokenString
-//        Facebook().postingSession(tokenString!) { (result, errorString) in
-//            //TODO
-//        }
+        
+        let tokenString = FBSDKAccessToken.current().tokenString
+        Facebook.facebookConstants.accessToken = tokenString!
+        Facebook().postSession { (result, errorString) in
+            if errorString == nil
+            {
+                do
+                {
+                    let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
+                    print(dataDict)
+                }
+                catch
+                {
+                    print("cannot serialise login  data")
+                }
+            }
+            else
+            {
+                print(errorString!)
+            }
+        }
     }
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         //TODO

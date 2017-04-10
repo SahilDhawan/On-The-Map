@@ -86,7 +86,7 @@
                     <connections>
                         <outlet property="debugLabel" destination="cYk-OU-QBO" id="lg8-S9-LLW"/>
                         <outlet property="emailTextField" destination="lac-JU-cke" id="grp-ZE-36O"/>
-                        <outlet property="facebookLogin" destination="YzU-TF-o3n" id="4Q8-Nb-0dE"/>
+                        <outlet property="facebookLogin" destination="YzU-TF-o3n" id="b4C-gL-EPt"/>
                         <outlet property="logInButton" destination="X7C-JZ-btV" id="ghg-5j-S9a"/>
                         <outlet property="passwordTextField" destination="3jn-9F-Yaw" id="43s-KE-N85"/>
                         <segue destination="Dw0-1U-5nN" kind="show" identifier="loginSegue" id="BYC-yF-e59"/>
