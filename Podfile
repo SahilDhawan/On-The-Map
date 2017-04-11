@@ -7,6 +7,4 @@ target 'OnTheMap' do
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
   # Pods for OnTheMap
-
-
 end

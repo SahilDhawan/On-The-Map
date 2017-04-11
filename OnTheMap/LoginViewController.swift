@@ -129,6 +129,8 @@ extension LoginViewController : UITextFieldDelegate
 }
 
 //MARK: Facebook Login
+//TODO
+// cannot retreieve data from udacity 
 extension LoginViewController: FBSDKLoginButtonDelegate
 {
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
