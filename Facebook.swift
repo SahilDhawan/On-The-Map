@@ -24,24 +24,26 @@ class Facebook : NSObject
         let facebookDict = NSMutableDictionary()
         facebookDict.setValue(facebookConstants.accessToken,forKey: "access_token")
         let dataDict = NSMutableDictionary()
-        
+        dataDict.setValue(facebookDict, forKey: "facebook_mobile")
+
         let urlString = ParseStudent.ParseConstants.urlString
         let url = URL(string:urlString)
         let request = NSMutableURLRequest.init(url: url!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        dataDict.setValue(facebookDict, forKey: "facebook_mobile")
         print(dataDict)
         do
         {
             let data = try JSONSerialization.data(withJSONObject: dataDict, options: .prettyPrinted)
             request.httpBody = data
+            print(NSString(data: data, encoding: String.Encoding.utf8.rawValue)!)
         }
         catch
         {
             print("cannot serialise facebook data")
         }
+        
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             if error != nil
@@ -50,9 +52,9 @@ class Facebook : NSObject
             }
             else
             {
-                let range = Range(uncheckedBounds: (5, data!.count))
+                let range = Range(uncheckedBounds: (5, data!.count-5))
                 let newData = data?.subdata(in: range)
-                print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
+                print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
                 completionHandler(newData,nil)
             }
         }

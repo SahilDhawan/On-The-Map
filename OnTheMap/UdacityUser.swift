@@ -24,8 +24,21 @@ class UdacityUser:NSObject
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let httpBodyString = "{\"udacity\": {\"username\": \"" + email +  "\", \"password\": \"" + password + "\"}}"
-        request.httpBody = httpBodyString.data(using: String.Encoding.utf8)
+        let userDict = NSMutableDictionary()
+        userDict.setValue(email, forKey: "username")
+        userDict.setValue(password, forKey: "password")
+        let udacityDict = NSMutableDictionary()
+        udacityDict.setValue(userDict, forKey: "udacity")
+        do
+        {
+            //creating data for httpBody
+            let userData = try JSONSerialization.data(withJSONObject: udacityDict, options: .prettyPrinted)
+            request.httpBody = userData
+        }
+        catch
+        {
+            print("cannot serialise udacity login data")
+        }
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if error != nil { // Handle error…

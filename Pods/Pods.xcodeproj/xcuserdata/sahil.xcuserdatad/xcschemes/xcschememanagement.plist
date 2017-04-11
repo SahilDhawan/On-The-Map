@@ -19,11 +19,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FBSDKShareKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-OnTheMap.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -33,11 +28,6 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>0EB19C1377A747F81110D44E2D5FCF78</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>30D7FCF8072F5D59AE1C98D94F9A6EC9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +42,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>94249732C897E61D9748AFC68C660399</key>
+		<key>A4DD306346D264E32916D28729B85C8D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

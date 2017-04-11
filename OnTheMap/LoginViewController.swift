@@ -8,7 +8,6 @@
 
 import UIKit
 import FBSDKLoginKit
-import FBSDKShareKit
 import FBSDKCoreKit
 
 class LoginViewController: UIViewController {

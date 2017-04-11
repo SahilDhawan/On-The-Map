@@ -84,20 +84,22 @@ class OnTheMapViewController: UIViewController {
     {
         for studentData in resultArray
         {
-            
-            let latitude = studentData["latitude"] as! CLLocationDegrees
+            print(studentData)
+            let latitude = studentData["latitude"] as? CLLocationDegrees
             
             //Apparently they can't spell longitude
             let longitude1 = studentData["longitude"] as? CLLocationDegrees
             let longitude2 = studentData["longtiude"] as? CLLocationDegrees
             
             let annotation = MKPointAnnotation.init()
-            let firstName = studentData["firstName"] as! String
+            let firstName = studentData["firstName"] as? String
             annotation.title = firstName
             let mediaUrl  = studentData["mediaURL"] as? String
             annotation.subtitle = mediaUrl
-            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitudeCheck(longitude1, longitude2))
-            
+            if latitude != nil 
+            {
+                annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitudeCheck(longitude1, longitude2))
+            }
             self.mapView.addAnnotation(annotation)
         }
     }
