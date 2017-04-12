@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import FBSDKLoginKit
-import FBSDKCoreKit
+
 
 class LoginViewController: UIViewController {
     
@@ -18,15 +17,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var debugLabel: UILabel!
-    @IBOutlet weak var facebookLogin: FBSDKLoginButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        facebookLogin.readPermissions = ["public_profile","email"]
-        facebookLogin.delegate = self
         
     }
     
@@ -125,38 +121,5 @@ extension LoginViewController : UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-}
-
-//MARK: Facebook Login
-//TODO
-// cannot retreieve data from udacity 
-extension LoginViewController: FBSDKLoginButtonDelegate
-{
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        
-        let tokenString = FBSDKAccessToken.current().tokenString
-        Facebook.facebookConstants.accessToken = tokenString!
-        Facebook().postSession { (result, errorString) in
-            if errorString == nil
-            {
-                do
-                {
-                    let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
-                    print(dataDict)
-                }
-                catch
-                {
-                    print("cannot serialise login  data")
-                }
-            }
-            else
-            {
-                print(errorString!)
-            }
-        }
-    }
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        //TODO
     }
 }

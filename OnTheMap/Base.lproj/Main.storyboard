@@ -31,7 +31,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="3Rz-WX-kqK">
-                                <rect key="frame" x="36" y="270" width="303" height="155"/>
+                                <rect key="frame" x="36" y="270" width="303" height="115"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lac-JU-cke">
                                         <rect key="frame" x="0.0" y="0.0" width="303" height="35"/>
@@ -58,14 +58,10 @@
                                             <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mai-7M-ds3"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YzU-TF-o3n" customClass="FBSDKLoginButton">
-                                        <rect key="frame" x="0.0" y="120" width="303" height="35"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYk-OU-QBO">
-                                <rect key="frame" x="187" y="525" width="0.0" height="0.0"/>
+                                <rect key="frame" x="187" y="485" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -86,7 +82,6 @@
                     <connections>
                         <outlet property="debugLabel" destination="cYk-OU-QBO" id="lg8-S9-LLW"/>
                         <outlet property="emailTextField" destination="lac-JU-cke" id="grp-ZE-36O"/>
-                        <outlet property="facebookLogin" destination="YzU-TF-o3n" id="b4C-gL-EPt"/>
                         <outlet property="logInButton" destination="X7C-JZ-btV" id="ghg-5j-S9a"/>
                         <outlet property="passwordTextField" destination="3jn-9F-Yaw" id="43s-KE-N85"/>
                         <segue destination="Dw0-1U-5nN" kind="show" identifier="loginSegue" id="BYC-yF-e59"/>
@@ -116,18 +111,18 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pSn-B1-qPx" id="d9v-VX-akc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Pd-D1-RTC">
-                                                    <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ChB-5V-e0s">
-                                                    <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -382,7 +377,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="spb-40-mM0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icon_mapview-selected" id="Ut5-vS-4DJ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jtw-zH-Tr5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Jtw-zH-Tr5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -401,7 +396,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rFh-V6-k3W" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icon_listview-selected" id="hPa-7A-Uus"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0hO-7g-cQc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0hO-7g-cQc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

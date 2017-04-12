@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		354D8F800A9C5A4CE234B20A /* Pods_OnTheMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F69AEDC888CA540A1EB2E4D2 /* Pods_OnTheMap.framework */; };
-		BA1D47871E97F0BF0022217C /* Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1D47861E97F0BF0022217C /* Facebook.swift */; };
 		BA1FC4A61E92D98000A405EB /* OnTheMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1FC4A51E92D98000A405EB /* OnTheMapViewController.swift */; };
 		BA1FC4A81E92D99200A405EB /* OnTheTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1FC4A71E92D99200A405EB /* OnTheTableViewController.swift */; };
 		BA1FC4AA1E92DAE700A405EB /* UdacityUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1FC4A91E92DAE700A405EB /* UdacityUser.swift */; };
@@ -29,7 +28,6 @@
 /* Begin PBXFileReference section */
 		32C117FFEC9637255C0382A7 /* Pods-OnTheMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap.debug.xcconfig"; sourceTree = "<group>"; };
 		AFA69486A2660546F3ED6513 /* Pods-OnTheMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap.release.xcconfig"; sourceTree = "<group>"; };
-		BA1D47861E97F0BF0022217C /* Facebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Facebook.swift; path = ../Facebook.swift; sourceTree = "<group>"; };
 		BA1FC4A51E92D98000A405EB /* OnTheMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheMapViewController.swift; sourceTree = "<group>"; };
 		BA1FC4A71E92D99200A405EB /* OnTheTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheTableViewController.swift; sourceTree = "<group>"; };
 		BA1FC4A91E92DAE700A405EB /* UdacityUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityUser.swift; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 		BAC9EE591E92BE2B00DE90FA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BA1D47861E97F0BF0022217C /* Facebook.swift */,
 				BA1FC4A91E92DAE700A405EB /* UdacityUser.swift */,
 				BA430ECC1E93867500F92D5E /* ParseConstants.swift */,
 				BA430ECE1E93877400F92D5E /* ParseStudent.swift */,
@@ -272,7 +269,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA1FC4AA1E92DAE700A405EB /* UdacityUser.swift in Sources */,
-				BA1D47871E97F0BF0022217C /* Facebook.swift in Sources */,
 				BABE97461E94F3780087ED9F /* UserCoordinateViewController.swift in Sources */,
 				BAC9EE491E92BDB300DE90FA /* LoginViewController.swift in Sources */,
 				BABE97481E9549B40087ED9F /* StudentDetails.swift in Sources */,
