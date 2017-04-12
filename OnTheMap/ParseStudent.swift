@@ -11,9 +11,14 @@ import UIKit
 
 class ParseStudent:NSObject
 {
+    //MARK: getStudentLocation
     func getStudentLocations(completionHandler:@escaping(_ result:Data?, _ error: String?) -> Void)
     {
-        let request = NSMutableURLRequest.init(url: URL(string:ParseConstants.urlString)!)
+        //getting 100 locations only
+        var urlString : String = ParseConstants.urlString
+        urlString.append("?limit=100")
+        
+        let request = NSMutableURLRequest.init(url: URL(string:urlString)!)
         request.addValue(ParseConstants.apiKey, forHTTPHeaderField: ParseConstants.apiHeader)
         request.addValue(ParseConstants.applicationId, forHTTPHeaderField: ParseConstants.applicationHeader)
         let urlSession = URLSession.shared
@@ -28,7 +33,7 @@ class ParseStudent:NSObject
                 completionHandler(nil,"Your request returned a status code other than 2xx!")
                 return
             }
-            
+
             guard let data = data else
             {
                 completionHandler(nil,"Could not fetch data")
@@ -39,7 +44,7 @@ class ParseStudent:NSObject
         }
         task.resume()
     }
-    
+    //MARK: postingStudentDetails
     func postingStudentDetails(completionHandler:@escaping(_ result : Data?, _ errorString : String?)->Void)
     {
         let request = NSMutableURLRequest(url: URL(string:ParseConstants.urlString)!)
@@ -85,7 +90,7 @@ class ParseStudent:NSObject
         }
         task.resume()
     }
-    
+    //MARK: puttingStudentDetails
     func puttingStudentDetails(completionHandler:@escaping(_ result : Data? , _ errorString: String?) ->Void)
     {
         var urlString : String = ParseConstants.urlString

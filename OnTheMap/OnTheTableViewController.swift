@@ -112,7 +112,6 @@ extension OnTheTableViewController:UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell = tableView.dequeueReusableCell(withIdentifier: "OnTheTableCell")
         let studentData = resultArray[indexPath.row]
-        print(studentData)
         let firstName : String? = (studentData["firstName"] as? String)
         let mediaURL : String? = (studentData["mediaURL"] as? String)
         
@@ -124,6 +123,7 @@ extension OnTheTableViewController:UITableViewDataSource
         }
         return tableCell!
     }
+    
     func showAlert(_ msg : String)
     {
         let controller = UIAlertController.init(title: "OnTheMap", message: msg, preferredStyle: .alert)

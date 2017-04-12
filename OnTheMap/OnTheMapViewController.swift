@@ -84,7 +84,8 @@ class OnTheMapViewController: UIViewController {
     {
         for studentData in resultArray
         {
-            print(studentData)
+            //adding StudentData to studentArray
+            StudentInformation.studentArray.append(studentData)
             let latitude = studentData["latitude"] as? CLLocationDegrees
             
             //Apparently they can't spell longitude
@@ -140,6 +141,7 @@ class OnTheMapViewController: UIViewController {
             
         }
     }
+    //show Alert
     func showAlert(_ msg : String)
     {
         let controller = UIAlertController.init(title: "OnTheMap", message: msg, preferredStyle: .alert)
@@ -147,5 +149,5 @@ class OnTheMapViewController: UIViewController {
         controller.addAction(action)
         self.present(controller, animated: true, completion: nil)
     }
-
 }
+

@@ -18,8 +18,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var debugLabel: UILabel!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
@@ -84,10 +83,14 @@ class LoginViewController: UIViewController {
                                     {
                                         let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
                                         let userDict = dataDict["user"] as! [String:AnyObject]
-                                        StudentDetails.lastName = userDict["last_name"] as! String
+                                        let lastName = userDict["last_name"] as! String
+                                        let userId = userId
+                                        let firstName = userDict["first_name"] as! String
+                                        
+                                        //Setting Student Detail values
+                                        StudentDetails.firstName = firstName
+                                        StudentDetails.lastName = lastName
                                         StudentDetails.userId = userId
-                                        StudentDetails.firstName = userDict["first_name"] as! String
-                                        print(StudentDetails.firstName + " " + StudentDetails.lastName)
                                     }
                                     catch{}
                                 }
@@ -132,7 +135,7 @@ class LoginViewController: UIViewController {
         showAlert("Email or Password can't be empty")
     }
     
-//Alert Function
+    //Alert Function
     func showAlert(_ msg : String)
     {
         let controller = UIAlertController.init(title: "OnTheMap", message: msg, preferredStyle: .alert)

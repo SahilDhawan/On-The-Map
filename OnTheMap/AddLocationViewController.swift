@@ -45,7 +45,9 @@ class AddLocationViewController: UIViewController {
             let text = websiteTextField.text!
             if(text.contains("https://www.") || (text.contains("http://www.")) && (text.contains(".com")))
             {
-                StudentDetails.webURL = websiteTextField.text!
+                let webURL = websiteTextField.text!
+                StudentDetails.webURL = webURL
+                
                 geocoder.geocodeAddressString(locationTextField.text!, completionHandler: { (placemark, error) in
                     if error != nil
                     {

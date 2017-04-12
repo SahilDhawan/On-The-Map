@@ -54,6 +54,10 @@ class UserCoordinateViewController: UIViewController {
                     }
                     catch{}
                 }
+                else
+                {
+                    self.showAlert(errorString!)
+                }
             }
         }
         else
@@ -69,11 +73,24 @@ class UserCoordinateViewController: UIViewController {
                     }
                     catch{}
                 }
+                else
+                {
+                    self.showAlert(errorString!)
+                }
             }
         }
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        let _ = self.navigationController?.popViewController(animated: true)
+        let  _ =
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showAlert(_ msg: String)
+    {
+        let viewController = UIAlertController.init(title: "OnTheMap", message: msg, preferredStyle: .alert)
+        let action = UIAlertAction.init(title: "Dismiss", style: .default, handler: nil)
+        viewController.addAction(action)
+        self.present(viewController, animated: true, completion: nil)
     }
 }
 
