@@ -46,7 +46,7 @@ class OnTheMapViewController: UIViewController {
             }
             else
             {
-                print(errorString!)
+                self.showAlert(errorString!)
             }
         }
     }
@@ -75,7 +75,7 @@ class OnTheMapViewController: UIViewController {
             }
             else
             {
-                print(errorString!)
+                self.showAlert(errorString!)
             }
         }
     }
@@ -140,4 +140,12 @@ class OnTheMapViewController: UIViewController {
             
         }
     }
+    func showAlert(_ msg : String)
+    {
+        let controller = UIAlertController.init(title: "OnTheMap", message: msg, preferredStyle: .alert)
+        let action = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
+        controller.addAction(action)
+        self.present(controller, animated: true, completion: nil)
+    }
+
 }

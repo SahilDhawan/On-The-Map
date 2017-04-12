@@ -11,6 +11,10 @@ import MapKit
 
 struct StudentDetails
 {
+    init()
+    {
+        //TODO
+    }
     static var objectId : String = ""
     static var userId : String = ""
     static var firstName : String = ""

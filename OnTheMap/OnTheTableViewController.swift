@@ -45,7 +45,7 @@ class OnTheTableViewController: UIViewController {
             }
             else
             {
-                print(errorString!)
+                self.showAlert(errorString!)
                 return
             }
         })
@@ -74,7 +74,7 @@ class OnTheTableViewController: UIViewController {
             }
             else
             {
-                print(errorString!)
+                self.showAlert(errorString!)
             }
         }
     }
@@ -124,6 +124,14 @@ extension OnTheTableViewController:UITableViewDataSource
         }
         return tableCell!
     }
+    func showAlert(_ msg : String)
+    {
+        let controller = UIAlertController.init(title: "OnTheMap", message: msg, preferredStyle: .alert)
+        let action = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
+        controller.addAction(action)
+        self.present(controller, animated: true, completion: nil)
+    }
+
 }
 //MARK : UITableViewDelegate
 extension OnTheTableViewController:UITableViewDelegate

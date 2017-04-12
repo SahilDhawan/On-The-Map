@@ -16,7 +16,7 @@ class UserCoordinateViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = true
+       // self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
     
@@ -55,13 +55,11 @@ class UserCoordinateViewController: UIViewController {
                     catch{}
                 }
             }
-            
         }
         else
         {
             print(StudentDetails.objectId)
             ParseStudent().puttingStudentDetails { (result, errorString) in
-                
                 if errorString == nil
                 {
                     do
@@ -73,6 +71,9 @@ class UserCoordinateViewController: UIViewController {
                 }
             }
         }
+    }
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        let _ = self.navigationController?.popViewController(animated: true)
     }
 }
 
