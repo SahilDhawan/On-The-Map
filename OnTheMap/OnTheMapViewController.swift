@@ -21,7 +21,6 @@ class OnTheMapViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
-        
         getDataFromParse()
     }
     
@@ -60,7 +59,7 @@ class OnTheMapViewController: UIViewController {
         self.view.addSubview(activityView)
         self.mapView.isOpaque = true
     }
-    
+    //MARK: LogOut
     @IBAction func logOutButtonPressed(_ sender: Any) {
         activityViewIndicator()
         UdacityUser().udacityLogOut(){(result,errorString)
@@ -70,8 +69,9 @@ class OnTheMapViewController: UIViewController {
                 let range = Range(5 ..< result!.count)
                 let newData = result?.subdata(in: range)
                 print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
-                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginViewController
-                self.present(viewController, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
             else
             {
@@ -119,6 +119,7 @@ class OnTheMapViewController: UIViewController {
             return long1!
         }
     }
+    
     @IBAction func addLocation(_ sender: Any) {
         //over write alert
         if !StudentDetails.studentDetail

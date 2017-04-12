@@ -16,11 +16,11 @@ class OnTheTableViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
         getDataFromParse()
     }
+    
     func getDataFromParse()
     {
         activityViewIndicator()
@@ -48,9 +48,7 @@ class OnTheTableViewController: UIViewController {
                 print(errorString!)
                 return
             }
-            
         })
-        
     }
     func activityViewIndicator()
     {
@@ -60,7 +58,7 @@ class OnTheTableViewController: UIViewController {
         self.view.addSubview(activityView)
         self.tableView.isOpaque = true
     }
-    
+    //MARK: LogOut
     @IBAction func logOutPressed(_ sender: Any) {
         activityViewIndicator()
         UdacityUser().udacityLogOut(){(result,errorString)
@@ -70,8 +68,9 @@ class OnTheTableViewController: UIViewController {
                 let range = Range(5 ..< result!.count)
                 let newData = result?.subdata(in: range)
                 print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
-                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginViewController
-                self.present(viewController, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
             else
             {
@@ -99,10 +98,12 @@ class OnTheTableViewController: UIViewController {
             self.present(controller, animated: true, completion: nil)
         }
     }
+    //refresh
     @IBAction func refreshButtonPressed(_ sender: Any) {
         getDataFromParse()
     }
 }
+//MARK : UITableViewDataSource
 extension OnTheTableViewController:UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -124,6 +125,7 @@ extension OnTheTableViewController:UITableViewDataSource
         return tableCell!
     }
 }
+//MARK : UITableViewDelegate
 extension OnTheTableViewController:UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

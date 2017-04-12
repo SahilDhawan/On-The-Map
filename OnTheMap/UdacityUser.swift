@@ -41,16 +41,28 @@ class UdacityUser:NSObject
         }
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil { // Handle error…
-                completionHandler(nil,error?.localizedDescription)
-            }
-            else
+            guard (error == nil)
+                else
             {
-                completionHandler(data,nil)
+                completionHandler(nil,"There was an error with your request")
+                return
             }
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                completionHandler(nil,"Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            guard let data = data else
+            {
+                completionHandler(nil,"Could not fetch data")
+                return
+            }
+            
+            completionHandler(data,nil)
         }
         task.resume()
     }
+    
     func gettingStudentDetails(_ userId : String, _ completionHandler:@escaping (_ result : Data?,_ errorString: String?)->Void)
     {
         var requestUrl = "https://www.udacity.com/api/users/"
@@ -59,16 +71,24 @@ class UdacityUser:NSObject
         let request = NSMutableURLRequest(url: URL(string:requestUrl)!)
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
-            if error == nil
+            guard (error == nil)
+                else
             {
-                let range = Range(uncheckedBounds: (5, data!.count))
-                let newData = data?.subdata(in: range) /* subset response data! */
-                completionHandler(newData,nil)
+                completionHandler(nil,"There was an error with your request")
+                return
             }
-            else
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                completionHandler(nil,"Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            guard let data = data else
             {
-                completionHandler(nil,error?.localizedDescription)
+                completionHandler(nil,"Could not fetch data")
+                return
             }
+            
+            completionHandler(data,nil)
         }
         task.resume()
     }
@@ -88,14 +108,24 @@ class UdacityUser:NSObject
         }
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error == nil {
-                completionHandler(data,nil)
+            guard (error == nil)
+                else
+            {
+                completionHandler(nil,"There was an error with your request")
                 return
             }
-            else
-            {
-                completionHandler(nil,error?.localizedDescription)
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                completionHandler(nil,"Your request returned a status code other than 2xx!")
+                return
             }
+            
+            guard let data = data else
+            {
+                completionHandler(nil,"Could not fetch data")
+                return
+            }
+            
+            completionHandler(data,nil)
         }
         task.resume()
     }

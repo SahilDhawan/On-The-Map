@@ -18,14 +18,24 @@ class ParseStudent:NSObject
         request.addValue(ParseConstants.applicationId, forHTTPHeaderField: ParseConstants.applicationHeader)
         let urlSession = URLSession.shared
         let task = urlSession.dataTask(with: request as URLRequest) { (data, response, error) in
-            if error == nil
+            guard (error == nil)
+                else
             {
-                completionHandler(data,nil)
+                completionHandler(nil,"There was an error with your request")
+                return
             }
-            else
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                completionHandler(nil,"Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            guard let data = data else
             {
-                completionHandler(nil,error?.localizedDescription)
+                completionHandler(nil,"Could not fetch data")
+                return
             }
+            
+            completionHandler(data,nil)
         }
         task.resume()
     }
@@ -53,13 +63,25 @@ class ParseStudent:NSObject
         catch{}
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil {
-                completionHandler(nil,error?.localizedDescription)
-            }
-            else
+            guard (error == nil)
+                else
             {
-                completionHandler(data,nil)
+                completionHandler(nil,"There was an error with your request")
+                return
             }
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                completionHandler(nil,"Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            guard let data = data else
+            {
+                completionHandler(nil,"Could not fetch data")
+                return
+            }
+            
+            completionHandler(data,nil)
+
         }
         task.resume()
     }
@@ -91,13 +113,25 @@ class ParseStudent:NSObject
         catch{}
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil {
-                completionHandler(nil,error?.localizedDescription)
-            }
-            else
+            guard (error == nil)
+                else
             {
-                completionHandler(data,nil)
+                completionHandler(nil,"There was an error with your request")
+                return
             }
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                completionHandler(nil,"Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            guard let data = data else
+            {
+                completionHandler(nil,"Could not fetch data")
+                return
+            }
+            
+            completionHandler(data,nil)
+
         }
         task.resume()
     }
