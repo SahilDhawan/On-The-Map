@@ -87,8 +87,9 @@ class UdacityUser:NSObject
                 completionHandler(nil,"Could not fetch data")
                 return
             }
-            
-            completionHandler(data,nil)
+            let range = Range(5..<data.count)
+            let newData = data.subdata(in: range)
+            completionHandler(newData,nil)
         }
         task.resume()
     }

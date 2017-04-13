@@ -23,12 +23,7 @@ class OnTheMapViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         getDataFromParse()
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.showAlert(LoginViewController.lastName)
-    }
-    
-    
+        
     func getDataFromParse()
     {
         activityViewIndicator()

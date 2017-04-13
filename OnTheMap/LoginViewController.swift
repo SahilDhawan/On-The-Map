@@ -79,8 +79,8 @@ class LoginViewController: UIViewController {
                                 do
                                 {
                                     print(NSString(data: result!, encoding: String.Encoding.utf8.rawValue)!)
-                                    
-                                    let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
+                                
+                                    let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! [String : AnyObject]
                                     let userDict = dataDict["user"] as! [String:AnyObject]
                                     
                                     //passing Data to Current User Data
