@@ -14,6 +14,8 @@ let activityView:UIActivityIndicatorView = UIActivityIndicatorView.init(activity
 class OnTheTableViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
@@ -87,7 +89,7 @@ class OnTheTableViewController: UIViewController {
         }
         else
         {
-            let msgString : String = "Details for student " + StudentDetails.firstName + " " + StudentDetails.lastName + " already exists"
+            let msgString : String = "Details for student " + LoginViewController.firstName + " " + LoginViewController.lastName + " already exists"
             let controller = UIAlertController.init(title: "OnTheMap", message: msgString, preferredStyle: .alert)
             let dismissAction = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
             let overwriteActon  = UIAlertAction.init(title: "Overwrite", style: .default, handler: { (action) in

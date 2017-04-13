@@ -11,155 +11,62 @@ import MapKit
 
 struct StudentDetails
 {
-    static var firstName : String
-    {
-        get
-        {
-            return StudentDetails.firstName
-        }
-        set
-        {
-            StudentDetails.firstName = newValue
-        }
-    }
-    static var objectId : String
-        {
-        get
-        {
-            return StudentDetails.objectId
-        }
-        set
-        {
-            StudentDetails.objectId = newValue
-        }
-    }
-    static var userId : String
-        {
-        get
-        {
-            return StudentDetails.userId
-        }
-        set
-        {
-            StudentDetails.userId = newValue
-        }
-    }
-    static var lastName : String
-        {
-        get
-        {
-            return StudentDetails.lastName
-        }
-        set
-        {
-            StudentDetails.lastName = newValue
-        }
-    }
-    static var mapString : String
-        {
-        get
-        {
-            return StudentDetails.mapString
-        }
-        set
-        {
-            StudentDetails.mapString = newValue
-        }
-    }
-    static var webURL:String
-        {
-        get
-        {
-            return StudentDetails.webURL
-        }
-        set
-        {
-            StudentDetails.webURL = newValue
-        }
-    }
-    static var studentLocation : CLLocationCoordinate2D
-        {
-        get
-        {
-            return StudentDetails.studentLocation
-        }
-        set
-        {
-            StudentDetails.studentLocation = newValue
-        }
-    }
-    static var createdAt : Date
-        {
-        get
-        {
-            return StudentDetails.createdAt
-        }
-        set
-        {
-            StudentDetails.createdAt = newValue
-        }
-    }
-    static var updatedAt : Date
-        {
-        get
-        {
-            return StudentDetails.updatedAt
-        }
-        set
-        {
-            StudentDetails.updatedAt = newValue
-        }
-    }
-    static var studentDetail : Bool
-        {
-        get
-        {
-            return StudentDetails.studentDetail
-        }
-        set
-        {
-            StudentDetails.studentDetail = newValue
-        }
-    }
+    var firstName : String = ""
+    var objectId : String = ""
+    var userId : String = ""
+    var lastName : String = ""
+    var mapString : String = ""
+    var webURL : String = ""
+    var studentLocation : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    var createdAt : String = ""
+    var updatedAt : String = ""
+    static var studentDetail : Bool = false
+    
     
     init(_ StudentData : [String:AnyObject])
     {
         if let firstName = StudentData["firstName"]
         {
-            StudentDetails.firstName =  firstName as! String
+            self.firstName =  firstName as! String
         }
         if let lastName = StudentData["lastName"]
         {
-            StudentDetails.lastName =  lastName as! String
+            self.lastName =  lastName as! String
         }
         if let mapString = StudentData["mapString"]
         {
-            StudentDetails.mapString = mapString as! String
+            self.mapString = mapString as! String
         }
         if let webURL = StudentData["webURL"]
         {
-            StudentDetails.webURL = webURL as! String
+            self.webURL = webURL as! String
         }
         if let studentLocation  = StudentData["studentLocation"]
         {
-            StudentDetails.studentLocation = studentLocation as! CLLocationCoordinate2D
+            self.studentLocation = studentLocation as! CLLocationCoordinate2D
         }
         if let createdAt  = StudentData["createdAt"]
         {
-            StudentDetails.createdAt = createdAt as! Date
+            self.createdAt = createdAt as! String
         }
         if let updatedAt  = StudentData["updatedAt"]
         {
-            StudentDetails.updatedAt = updatedAt as! Date
+            self.updatedAt = updatedAt as! String
         }
         if let objectId  = StudentData["objectId"]
         {
-            StudentDetails.objectId = objectId as! String
+            self.objectId = objectId as! String
         }
         if let userId  = StudentData["userId"]
         {
-            StudentDetails.userId = userId as! String
+            self.userId = userId as! String
         }
+        if let studentDetail = StudentData["studentDetail"]
+        {
+            StudentDetails.studentDetail = studentDetail as! Bool
+        }
+        
     }
     
 }
+

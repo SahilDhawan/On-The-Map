@@ -10,5 +10,5 @@ import Foundation
 
 class StudentInformation:NSObject
 {
-    static var studentArray = [[String:AnyObject]]()
+    static var studentArray = [StudentDetails]()
 }

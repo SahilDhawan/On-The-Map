@@ -45,7 +45,7 @@ class ParseStudent:NSObject
         task.resume()
     }
     //MARK: postingStudentDetails
-    func postingStudentDetails(completionHandler:@escaping(_ result : Data?, _ errorString : String?)->Void)
+    func postingStudentDetails(_ currentUser:StudentDetails,completionHandler:@escaping( _ result : Data?, _ errorString : String?)->Void)
     {
         let request = NSMutableURLRequest(url: URL(string:ParseConstants.urlString)!)
         request.httpMethod = "POST"
@@ -54,12 +54,12 @@ class ParseStudent:NSObject
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let dict = NSMutableDictionary()
-        dict.setValue(StudentDetails.userId, forKey: "uniqueKey")
-        dict.setValue(StudentDetails.firstName, forKey: "firstName")
-        dict.setValue(StudentDetails.lastName, forKey: "lastName")
-        dict.setValue(StudentDetails.webURL, forKey: "mediaURL")
-        dict.setValue(StudentDetails.studentLocation.latitude, forKey: "latitude")
-        dict.setValue(StudentDetails.studentLocation.longitude, forKey: "longitude")
+        dict.setValue(currentUser.userId, forKey: "uniqueKey")
+        dict.setValue(currentUser.firstName, forKey: "firstName")
+        dict.setValue(currentUser.lastName, forKey: "lastName")
+        dict.setValue(currentUser.webURL, forKey: "mediaURL")
+        dict.setValue(currentUser.studentLocation.latitude, forKey: "latitude")
+        dict.setValue(currentUser.studentLocation.longitude, forKey: "longitude")
         do
         {
             let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
@@ -91,10 +91,10 @@ class ParseStudent:NSObject
         task.resume()
     }
     //MARK: puttingStudentDetails
-    func puttingStudentDetails(completionHandler:@escaping(_ result : Data? , _ errorString: String?) ->Void)
+    func puttingStudentDetails(_ currentUser:StudentDetails,completionHandler:@escaping(_ result : Data? , _ errorString: String?) ->Void)
     {
         var urlString : String = ParseConstants.urlString
-        urlString.append(StudentDetails.objectId)
+        urlString.append(currentUser.objectId)
         let url = URL(string:urlString)
         let request = NSMutableURLRequest(url: url!)
         request.httpMethod = "PUT"
@@ -103,12 +103,12 @@ class ParseStudent:NSObject
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let dict = NSMutableDictionary()
-        dict.setValue(StudentDetails.userId, forKey: "uniqueKey")
-        dict.setValue(StudentDetails.firstName, forKey: "firstName")
-        dict.setValue(StudentDetails.lastName, forKey: "lastName")
-        dict.setValue(StudentDetails.webURL, forKey: "mediaURL")
-        dict.setValue(StudentDetails.studentLocation.latitude, forKey: "latitude")
-        dict.setValue(StudentDetails.studentLocation.longitude, forKey: "longitude")
+        dict.setValue(currentUser.userId, forKey: "uniqueKey")
+        dict.setValue(currentUser.firstName, forKey: "firstName")
+        dict.setValue(currentUser.lastName, forKey: "lastName")
+        dict.setValue(currentUser.webURL, forKey: "mediaURL")
+        dict.setValue(currentUser.studentLocation.latitude, forKey: "latitude")
+        dict.setValue(currentUser.studentLocation.longitude, forKey: "longitude")
         do
         {
             let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)

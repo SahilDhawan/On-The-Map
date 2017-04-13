@@ -23,7 +23,10 @@ class OnTheMapViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         getDataFromParse()
     }
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.showAlert(LoginViewController.lastName)
+    }
     
     
     func getDataFromParse()
@@ -85,7 +88,7 @@ class OnTheMapViewController: UIViewController {
         for studentData in resultArray
         {
             //adding StudentData to studentArray
-            StudentInformation.studentArray.append(studentData)
+            StudentInformation.studentArray.append(StudentDetails(studentData))
             let latitude = studentData["latitude"] as? CLLocationDegrees
             
             //Apparently they can't spell longitude
@@ -129,7 +132,7 @@ class OnTheMapViewController: UIViewController {
         }
         else
         {
-            let msgString : String = "Details for student " + StudentDetails.firstName + " " + StudentDetails.lastName + " already exists"
+            let msgString : String = "Details for student " + LoginViewController.firstName + " " + LoginViewController.lastName + " already exists"
             let controller = UIAlertController.init(title: "OnTheMap", message: msgString, preferredStyle: .alert)
             let dismissAction = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
             let overwriteActon  = UIAlertAction.init(title: "Overwrite", style: .default, handler: { (action) in

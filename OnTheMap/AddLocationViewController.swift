@@ -13,6 +13,12 @@ class AddLocationViewController: UIViewController {
     
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
+    let activityView : UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+
+    //Current User Details
+    static var mapString : String = ""
+    static var webURL : String = ""
+    static var studentLocation : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +34,8 @@ class AddLocationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        activityView.stopAnimating()
+
     }
     
     func showAlert(_ msg: String)
@@ -41,17 +49,22 @@ class AddLocationViewController: UIViewController {
     @IBAction func FindLocationPressed(_ sender: Any) {
         guard locationTextField.text == nil, websiteTextField.text == nil else
         {
+            //ActivityIndicatorView
+            activityView.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+            activityView.alpha = 1
+            self.view.addSubview(activityView)
+            
+            activityView.startAnimating()
             let geocoder = CLGeocoder()
             let text = websiteTextField.text!
             if(text.contains("https://www.") || (text.contains("http://www.")) && (text.contains(".com")))
             {
-                let webURL = websiteTextField.text!
-                StudentDetails.webURL = webURL
-                
+                AddLocationViewController.webURL = websiteTextField.text!
                 geocoder.geocodeAddressString(locationTextField.text!, completionHandler: { (placemark, error) in
                     if error != nil
                     {
                         self.showAlert("Invalid Location")
+                        self.activityView.stopAnimating()
                     }
                     else
                     {
@@ -59,9 +72,9 @@ class AddLocationViewController: UIViewController {
                         {
                             var location : CLLocation?
                             location = place.first?.location
-                            StudentDetails.studentLocation = location!.coordinate
-                            StudentDetails.webURL = self.websiteTextField.text!
-                            StudentDetails.mapString = self.locationTextField.text!
+                            AddLocationViewController.studentLocation = location!.coordinate
+                            AddLocationViewController.mapString = self.locationTextField.text!
+
                             self.performSegue(withIdentifier: "UserCoordinate", sender: location)
                         }
                     }

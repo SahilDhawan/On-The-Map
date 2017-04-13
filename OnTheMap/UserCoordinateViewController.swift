@@ -13,12 +13,19 @@ class UserCoordinateViewController: UIViewController {
     
     
     @IBOutlet weak var mapView: MKMapView!
+    let activityView : UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+    
+    //Current User Details
+    static var objectId : String = ""
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       // self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
-    }
+        
+        //ActivityIndicatorView
+        activityView.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+        activityView.alpha = 1
+        self.view.addSubview(activityView)    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -29,11 +36,12 @@ class UserCoordinateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let currentAnnotation = MKPointAnnotation.init()
-        currentAnnotation.coordinate = StudentDetails.studentLocation
+        currentAnnotation.coordinate = AddLocationViewController.studentLocation
         self.mapView.addAnnotation(currentAnnotation)
-        let region = MKCoordinateRegionMakeWithDistance(StudentDetails.studentLocation, 100, 100)
+        let region = MKCoordinateRegionMakeWithDistance(AddLocationViewController.studentLocation, 100, 100)
         let adjustedRegion = self.mapView.regionThatFits(region)
         self.mapView.setRegion(adjustedRegion, animated: true)
+        self.mapView.delegate = self
     }
     
     @IBAction func finishButtonPressed(_ sender: Any) {
@@ -42,7 +50,23 @@ class UserCoordinateViewController: UIViewController {
         {
             //setting flag to true
             StudentDetails.studentDetail = true
-            ParseStudent().postingStudentDetails { (result, errorString) in
+            
+            //Current Student Data
+            var currentStudentData = [String:AnyObject]()
+            currentStudentData["firstName"] = LoginViewController.firstName as AnyObject?
+            currentStudentData["lastName"] = LoginViewController.lastName as AnyObject?
+            currentStudentData["userId"] = LoginViewController.userId as AnyObject?
+            currentStudentData["webURL"] = AddLocationViewController.webURL as AnyObject?
+            currentStudentData["mapString"] = AddLocationViewController.mapString as AnyObject?
+            currentStudentData["studentLocation"] = AddLocationViewController.studentLocation as AnyObject?
+            currentStudentData["objectId"] = UserCoordinateViewController.objectId as AnyObject?
+            
+            //Creating StudentDetails Object
+            let currentStudent = StudentDetails(currentStudentData)
+            
+            
+            
+            ParseStudent().postingStudentDetails(currentStudent) { (result, errorString) in
                 if errorString == nil
                 {
                     do
@@ -50,7 +74,7 @@ class UserCoordinateViewController: UIViewController {
                         let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
                         print(dataDict)
                         let objectId = dataDict["objectId"] as! String
-                        StudentDetails.objectId = objectId
+                        UserCoordinateViewController.objectId = objectId
                     }
                     catch{}
                 }
@@ -62,8 +86,22 @@ class UserCoordinateViewController: UIViewController {
         }
         else
         {
-            print(StudentDetails.objectId)
-            ParseStudent().puttingStudentDetails { (result, errorString) in
+            
+            //Current Student Data
+            var currentStudentData = [String:AnyObject]()
+            currentStudentData["firstName"] = LoginViewController.firstName as AnyObject?
+            currentStudentData["lastName"] = LoginViewController.lastName as AnyObject?
+            currentStudentData["userId"] = LoginViewController.userId as AnyObject?
+            currentStudentData["webURL"] = AddLocationViewController.webURL as AnyObject?
+            currentStudentData["mapString"] = AddLocationViewController.mapString as AnyObject?
+            currentStudentData["studentLocation"] = AddLocationViewController.studentLocation as AnyObject?
+            currentStudentData["objectId"] = UserCoordinateViewController.objectId as AnyObject?
+            
+            //Creating StudentDetails Object
+            let currentStudent = StudentDetails(currentStudentData)
+            
+
+            ParseStudent().puttingStudentDetails(currentStudent) { (result, errorString) in
                 if errorString == nil
                 {
                     do
@@ -93,7 +131,13 @@ class UserCoordinateViewController: UIViewController {
         self.present(viewController, animated: true, completion: nil)
     }
 }
-
+//MARK: MKMapViewDelegate
+extension UserCoordinateViewController : MKMapViewDelegate
+{
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        self.activityView.stopAnimating()
+    }
+}
 
 
 

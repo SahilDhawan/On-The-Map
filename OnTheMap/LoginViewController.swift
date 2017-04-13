@@ -18,12 +18,16 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var debugLabel: UILabel!
-
+    
+    //Current User Details
+    static var firstName : String = ""
+    static var lastName : String = ""
+    static var userId : String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +61,7 @@ class LoginViewController: UIViewController {
         {
             
             //Udacity Login
+            
             UdacityUser().udacityLogIn(emailTextField.text!,passwordTextField.text!){(result,error) in
                 if error == nil
                 {
@@ -65,57 +70,50 @@ class LoginViewController: UIViewController {
                     do
                     {
                         let dataDictionary = try JSONSerialization.jsonObject(with: newData!, options: .allowFragments) as! NSDictionary
-                        print(dataDictionary)
-                        let sessionDictionary = dataDictionary["session"] as? NSDictionary
+                        let resultDict = dataDictionary["account"] as! [String:AnyObject?]
+                        let userId = resultDict["key"] as! String
                         
-                        if let session = sessionDictionary
-                        {
-                            let sessionId = session["id"] as! String
-                            UdacityUser.sessionId = sessionId
-                            let resultDict = dataDictionary["account"] as! [String:AnyObject?]
-                            let userId = resultDict["key"] as! String
-                            
-                            //GettingStudentDetails
-                            UdacityUser().gettingStudentDetails(userId, { (result, errorString) in
-                                if errorString == nil
+                        UdacityUser().gettingStudentDetails(userId, { (result, errorString) in
+                            if errorString == nil
+                            {
+                                do
                                 {
-                                    do
-                                    {
-                                        let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
-                                        let userDict = dataDict["user"] as! [String:AnyObject]
-                                        let lastName = userDict["last_name"] as! String
-                                        let userId = userId
-                                        let firstName = userDict["first_name"] as! String
-                                        
-                                        //Setting Student Detail values
-                                        StudentDetails.firstName = firstName
-                                        StudentDetails.lastName = lastName
-                                        StudentDetails.userId = userId
+                                    print(NSString(data: result!, encoding: String.Encoding.utf8.rawValue)!)
+                                    
+                                    let dataDict = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! NSDictionary
+                                    let userDict = dataDict["user"] as! [String:AnyObject]
+                                    
+                                    //passing Data to Current User Data
+                                    DispatchQueue.main.async {
+                                        LoginViewController.lastName = userDict["last_name"] as! String
+                                        print(userDict)
+                                        print(LoginViewController.lastName)
+                                        LoginViewController.userId = userId
+                                        LoginViewController.firstName = userDict["first_name"] as! String
+                                        //Segue
+                                        self.activityView.stopAnimating()
+                                        self.performSegue(withIdentifier: "loginSegue", sender: self)
                                     }
-                                    catch{}
                                 }
-                                else
-                                {
-                                    //handling data fetch error
-                                    self.showAlert(errorString!)
+                                catch{
+                                    DispatchQueue.main.async {
+                                        self.showAlert("cannot serialise getStudentDetails Data")
+                                        self.activityView.stopAnimating()
+                                        self.logInButton.isEnabled = true
+                                    }
                                 }
-                            })
-                        }
-                        else
-                        {
-                            DispatchQueue.main.async {
-                                //handling session error
-                                self.showAlert("Invalid Login")
-                                self.activityView.stopAnimating()
-                                self.logInButton.isEnabled = true
                             }
-                            return
-                        }
+                            else
+                            {
+                                //handling data fetch error
+                                self.showAlert(errorString!)
+                            }
+                        })
                     }
-                    catch{}
-                    DispatchQueue.main.async {
+                    catch{
+                        self.showAlert("cannot serialise udacityLogin Data")
                         self.activityView.stopAnimating()
-                        self.performSegue(withIdentifier: "loginSegue", sender: self)
+                        self.logInButton.isEnabled = true
                     }
                 }
                 else
@@ -133,6 +131,8 @@ class LoginViewController: UIViewController {
         }
         // Alert for email and password
         showAlert("Email or Password can't be empty")
+        self.activityView.stopAnimating()
+        self.logInButton.isEnabled = true
     }
     
     //Alert Function
@@ -143,6 +143,8 @@ class LoginViewController: UIViewController {
         controller.addAction(action)
         self.present(controller, animated: true, completion: nil)
     }
+    
+    
 }
 //MARK: TextFieldDelegate
 extension LoginViewController : UITextFieldDelegate
