@@ -144,6 +144,10 @@ class LoginViewController: UIViewController {
         self.present(controller, animated: true, completion: nil)
     }
     
+    @IBAction func signUpButtonPressed(_ sender: Any) {
+        let url = URL(string:"https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated")
+        UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+    }
     
 }
 //MARK: TextFieldDelegate

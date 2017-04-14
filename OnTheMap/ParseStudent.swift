@@ -16,7 +16,7 @@ class ParseStudent:NSObject
     {
         //getting 100 locations only
         var urlString : String = ParseConstants.urlString
-        urlString.append("?limit=100")
+        urlString.append("?limit=100&order=-updatedAt")
         
         let request = NSMutableURLRequest.init(url: URL(string:urlString)!)
         request.addValue(ParseConstants.apiKey, forHTTPHeaderField: ParseConstants.apiHeader)

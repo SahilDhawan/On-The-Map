@@ -23,7 +23,10 @@ class OnTheMapViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         getDataFromParse()
     }
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.mapView.delegate = self
+    }
     func getDataFromParse()
     {
         activityViewIndicator()
@@ -35,7 +38,6 @@ class OnTheMapViewController: UIViewController {
                     let resultDictionary = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! [String:AnyObject]
                     self.resultArray = resultDictionary["results"] as! [[String:AnyObject]]
                     DispatchQueue.main.async {
-                        self.activityView.stopAnimating()
                         self.mapView.isUserInteractionEnabled = true
                         self.addingAnnotations()
                     }
@@ -95,6 +97,7 @@ class OnTheMapViewController: UIViewController {
             annotation.title = firstName
             let mediaUrl  = studentData["mediaURL"] as? String
             annotation.subtitle = mediaUrl
+            
             if latitude != nil
             {
                 annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitudeCheck(longitude1, longitude2))
@@ -150,4 +153,12 @@ class OnTheMapViewController: UIViewController {
         self.present(controller, animated: true, completion: nil)
     }
 }
-
+extension OnTheMapViewController : MKMapViewDelegate
+{
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        self.activityView.stopAnimating()
+    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("subtitle")
+    }
+}
