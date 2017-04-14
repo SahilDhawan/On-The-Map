@@ -14,7 +14,7 @@ class AddLocationViewController: UIViewController {
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
     let activityView : UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
-
+    
     //Current User Details
     static var mapString : String = ""
     static var webURL : String = ""
@@ -35,7 +35,7 @@ class AddLocationViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
         activityView.stopAnimating()
-
+        
     }
     
     func showAlert(_ msg: String)
@@ -74,7 +74,7 @@ class AddLocationViewController: UIViewController {
                             location = place.first?.location
                             AddLocationViewController.studentLocation = location!.coordinate
                             AddLocationViewController.mapString = self.locationTextField.text!
-
+                            
                             self.performSegue(withIdentifier: "UserCoordinate", sender: location)
                         }
                     }
@@ -89,11 +89,14 @@ class AddLocationViewController: UIViewController {
         }
     }
     
+    
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        _ = self.navigationController?.popViewController(animated: true)
+        let controller = storyboard?.instantiateViewController(withIdentifier: "tabController")
+        self.present(controller!, animated: true, completion: nil)
     }
     
 }
+
 
 extension AddLocationViewController:UITextFieldDelegate
 {

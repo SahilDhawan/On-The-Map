@@ -45,27 +45,25 @@ class UserCoordinateViewController: UIViewController {
     }
     
     @IBAction func finishButtonPressed(_ sender: Any) {
-        _ = self.navigationController?.popToRootViewController(animated: true)
+        
+        //Current Student Data
+        var currentStudentData = [String:AnyObject]()
+        currentStudentData["firstName"] = LoginViewController.firstName as AnyObject?
+        currentStudentData["lastName"] = LoginViewController.lastName as AnyObject?
+        currentStudentData["userId"] = LoginViewController.userId as AnyObject?
+        currentStudentData["webURL"] = AddLocationViewController.webURL as AnyObject?
+        currentStudentData["mapString"] = AddLocationViewController.mapString as AnyObject?
+        currentStudentData["studentLocation"] = AddLocationViewController.studentLocation as AnyObject?
+        currentStudentData["objectId"] = UserCoordinateViewController.objectId as AnyObject?
+        
+        //Creating StudentDetails Object
+        let currentStudent = StudentDetails(currentStudentData)
+
         if !StudentDetails.studentDetail
         {
             //setting flag to true
             StudentDetails.studentDetail = true
-            
-            //Current Student Data
-            var currentStudentData = [String:AnyObject]()
-            currentStudentData["firstName"] = LoginViewController.firstName as AnyObject?
-            currentStudentData["lastName"] = LoginViewController.lastName as AnyObject?
-            currentStudentData["userId"] = LoginViewController.userId as AnyObject?
-            currentStudentData["webURL"] = AddLocationViewController.webURL as AnyObject?
-            currentStudentData["mapString"] = AddLocationViewController.mapString as AnyObject?
-            currentStudentData["studentLocation"] = AddLocationViewController.studentLocation as AnyObject?
-            currentStudentData["objectId"] = UserCoordinateViewController.objectId as AnyObject?
-            
-            //Creating StudentDetails Object
-            let currentStudent = StudentDetails(currentStudentData)
-            
-            
-            
+      
             ParseStudent().postingStudentDetails(currentStudent) { (result, errorString) in
                 if errorString == nil
                 {
@@ -75,6 +73,7 @@ class UserCoordinateViewController: UIViewController {
                         print(dataDict)
                         let objectId = dataDict["objectId"] as! String
                         UserCoordinateViewController.objectId = objectId
+                        
                     }
                     catch{}
                 }
@@ -86,21 +85,7 @@ class UserCoordinateViewController: UIViewController {
         }
         else
         {
-            
-            //Current Student Data
-            var currentStudentData = [String:AnyObject]()
-            currentStudentData["firstName"] = LoginViewController.firstName as AnyObject?
-            currentStudentData["lastName"] = LoginViewController.lastName as AnyObject?
-            currentStudentData["userId"] = LoginViewController.userId as AnyObject?
-            currentStudentData["webURL"] = AddLocationViewController.webURL as AnyObject?
-            currentStudentData["mapString"] = AddLocationViewController.mapString as AnyObject?
-            currentStudentData["studentLocation"] = AddLocationViewController.studentLocation as AnyObject?
-            currentStudentData["objectId"] = UserCoordinateViewController.objectId as AnyObject?
-            
-            //Creating StudentDetails Object
-            let currentStudent = StudentDetails(currentStudentData)
-            
-
+      
             ParseStudent().puttingStudentDetails(currentStudent) { (result, errorString) in
                 if errorString == nil
                 {
@@ -117,10 +102,13 @@ class UserCoordinateViewController: UIViewController {
                 }
             }
         }
+        //presenting Tab View Controller
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "tabController")
+        self.present(controller!, animated: true, completion: nil)
     }
+    
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        let  _ =
-        self.navigationController?.popViewController(animated: true)
+        let _ = self.navigationController?.popViewController(animated: true)
     }
     
     func showAlert(_ msg: String)

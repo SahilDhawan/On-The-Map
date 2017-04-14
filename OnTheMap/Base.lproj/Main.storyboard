@@ -167,7 +167,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Wpu-Bx-4zw" id="4vO-b5-zxS"/>
-                        <segue destination="XQc-3k-El3" kind="show" identifier="AddLocation" id="2vL-PI-Vqv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FuX-om-mfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -221,7 +220,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="trm-WA-hWF" id="SID-Wv-zbL"/>
-                        <segue destination="XQc-3k-El3" kind="show" identifier="AddLocation" id="z2s-RE-4ub"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suD-pP-8cT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,7 +229,7 @@
         <!--Add Location-->
         <scene sceneID="Vnm-U4-2nX">
             <objects>
-                <viewController storyboardIdentifier="AddLocation" id="XQc-3k-El3" customClass="AddLocationViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XQc-3k-El3" customClass="AddLocationViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3nf-TQ-9gn"/>
                         <viewControllerLayoutGuide type="bottom" id="W2U-jn-Iag"/>
@@ -290,10 +288,10 @@
                     <toolbarItems>
                         <barButtonItem title="Item" id="ZnN-o9-6zb"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Add Location" id="9Vy-Sa-h4u">
-                        <barButtonItem key="leftBarButtonItem" title="CANCEL" id="Glf-XJ-a7r">
+                    <navigationItem key="navigationItem" title="Add Location" id="Ag2-xI-dfb">
+                        <barButtonItem key="leftBarButtonItem" title="CANCEL" id="nfe-6X-EUU">
                             <connections>
-                                <action selector="cancelButtonPressed:" destination="XQc-3k-El3" id="u3i-by-7gE"/>
+                                <action selector="cancelButtonPressed:" destination="XQc-3k-El3" id="3RG-t0-A6h"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -306,7 +304,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="377-GZ-xsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3430" y="-134"/>
+            <point key="canvasLocation" x="4169" y="-63"/>
         </scene>
         <!--Add Location-->
         <scene sceneID="6Vd-se-lDM">
@@ -346,10 +344,10 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Add Location" id="Jae-ni-82W">
-                        <barButtonItem key="leftBarButtonItem" title="CANCEL" id="gjZ-Z1-txR">
+                    <navigationItem key="navigationItem" title="Add Location" id="OEt-1u-X5R">
+                        <barButtonItem key="leftBarButtonItem" title="CANCEL" id="B3u-HP-jet">
                             <connections>
-                                <action selector="cancelButtonPressed:" destination="rfj-OY-L25" id="NBx-hT-4iS"/>
+                                <action selector="cancelButtonPressed:" destination="rfj-OY-L25" id="VFF-c0-R46"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -359,12 +357,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="who-66-6fQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4188" y="-134"/>
+            <point key="canvasLocation" x="4924" y="-63"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="EO6-Jr-rD7">
             <objects>
-                <tabBarController id="Dw0-1U-5nN" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabController" id="Dw0-1U-5nN" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="dnE-uM-dv4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -385,7 +383,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="spb-40-mM0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icon_mapview-selected" id="Ut5-vS-4DJ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Jtw-zH-Tr5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jtw-zH-Tr5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -404,7 +402,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rFh-V6-k3W" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icon_listview-selected" id="hPa-7A-Uus"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0hO-7g-cQc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0hO-7g-cQc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -417,6 +415,24 @@
             </objects>
             <point key="canvasLocation" x="1656.8" y="300.89955022488761"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="W1F-bU-Ydu">
+            <objects>
+                <navigationController storyboardIdentifier="AddLocation" automaticallyAdjustsScrollViewInsets="NO" id="iO0-ao-Eg7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nn9-qa-6iU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XQc-3k-El3" kind="relationship" relationship="rootViewController" id="Ois-UO-qvg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x1Q-4g-doU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3442" y="-63"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icon_listview-selected" width="75" height="50"/>
@@ -424,7 +440,4 @@
         <image name="icon_world" width="52" height="67"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="z2s-RE-4ub"/>
-    </inferredMetricsTieBreakers>
 </document>

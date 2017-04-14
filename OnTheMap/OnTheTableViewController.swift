@@ -84,7 +84,8 @@ class OnTheTableViewController: UIViewController {
     @IBAction func addLocation(_ sender: Any) {
         if !StudentDetails.studentDetail
         {
-            performSegue(withIdentifier: "AddLocation", sender: self)
+            let controller = storyboard?.instantiateViewController(withIdentifier: "AddLocation")
+            self.present(controller!, animated: true, completion: nil)
             StudentDetails.studentDetail = true
         }
         else
@@ -93,8 +94,9 @@ class OnTheTableViewController: UIViewController {
             let controller = UIAlertController.init(title: "OnTheMap", message: msgString, preferredStyle: .alert)
             let dismissAction = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
             let overwriteActon  = UIAlertAction.init(title: "Overwrite", style: .default, handler: { (action) in
-                self.performSegue(withIdentifier: "AddLocation", sender: self)
-            })
+                
+                let controller = self.storyboard?.instantiateViewController(withIdentifier: "AddLocation")
+                self.present(controller!, animated: true, completion: nil)            })
             controller.addAction(overwriteActon)
             controller.addAction(dismissAction)
             self.present(controller, animated: true, completion: nil)
@@ -133,7 +135,7 @@ extension OnTheTableViewController:UITableViewDataSource
         controller.addAction(action)
         self.present(controller, animated: true, completion: nil)
     }
-
+    
 }
 //MARK : UITableViewDelegate
 extension OnTheTableViewController:UITableViewDelegate

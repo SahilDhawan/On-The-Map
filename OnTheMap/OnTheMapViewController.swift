@@ -23,7 +23,7 @@ class OnTheMapViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         getDataFromParse()
     }
-        
+    
     func getDataFromParse()
     {
         activityViewIndicator()
@@ -95,7 +95,7 @@ class OnTheMapViewController: UIViewController {
             annotation.title = firstName
             let mediaUrl  = studentData["mediaURL"] as? String
             annotation.subtitle = mediaUrl
-            if latitude != nil 
+            if latitude != nil
             {
                 annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitudeCheck(longitude1, longitude2))
             }
@@ -123,7 +123,8 @@ class OnTheMapViewController: UIViewController {
         //over write alert
         if !StudentDetails.studentDetail
         {
-            performSegue(withIdentifier: "AddLocation", sender: self)
+            let controller = storyboard?.instantiateViewController(withIdentifier: "AddLocation")
+            self.present(controller!, animated: true, completion: nil)
         }
         else
         {
@@ -131,7 +132,8 @@ class OnTheMapViewController: UIViewController {
             let controller = UIAlertController.init(title: "OnTheMap", message: msgString, preferredStyle: .alert)
             let dismissAction = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
             let overwriteActon  = UIAlertAction.init(title: "Overwrite", style: .default, handler: { (action) in
-                self.performSegue(withIdentifier: "AddLocation", sender: self)
+                let controller = self.storyboard?.instantiateViewController(withIdentifier: "AddLocation")
+                self.present(controller!, animated: true, completion: nil)
             })
             controller.addAction(overwriteActon)
             controller.addAction(dismissAction)
