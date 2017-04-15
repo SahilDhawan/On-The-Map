@@ -92,16 +92,15 @@ class OnTheMapViewController: UIViewController {
             let longitude1 = studentData["longitude"] as? CLLocationDegrees
             let longitude2 = studentData["longtiude"] as? CLLocationDegrees
             
-            let annotation = MKPointAnnotation.init()
             let firstName = studentData["firstName"] as? String
-            annotation.title = firstName
             let mediaUrl  = studentData["mediaURL"] as? String
-            annotation.subtitle = mediaUrl
-            
+            var coordinate : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
             if latitude != nil
             {
-                annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitudeCheck(longitude1, longitude2))
+                coordinate = CLLocationCoordinate2DMake(latitude!, longitudeCheck(longitude1, longitude2))
             }
+            //created studentPin Object
+            let annotation = studentPin(firstName!,mediaUrl!,coordinate)
             self.mapView.addAnnotation(annotation)
         }
     }
@@ -158,7 +157,34 @@ extension OnTheMapViewController : MKMapViewDelegate
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
         self.activityView.stopAnimating()
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? studentPin
+        {
+            let identifier = "studentPin"
+            var view : MKPinAnnotationView
+            if let dequeueView = self.mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+            {
+                dequeueView.annotation = annotation
+                view = dequeueView
+            }
+            else
+            {
+                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = true
+                view.calloutOffset = CGPoint(x: -5 , y:5)
+                view.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure) as UIView
+            }
+            return view
+        }
+        return nil
+    }
+    
+    
+    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("subtitle")
+        let student = view.annotation as! studentPin
+        let url = URL(string:student.getLink())
+        UIApplication.shared.open(url!, options: [:], completionHandler: nil)
     }
 }

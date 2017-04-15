@@ -13,6 +13,7 @@
 		BA1FC4AA1E92DAE700A405EB /* UdacityUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1FC4A91E92DAE700A405EB /* UdacityUser.swift */; };
 		BA430ECD1E93867500F92D5E /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA430ECC1E93867500F92D5E /* ParseConstants.swift */; };
 		BA430ECF1E93877400F92D5E /* ParseStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA430ECE1E93877400F92D5E /* ParseStudent.swift */; };
+		BA4BE2841EA248EF00708635 /* studentPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BE2831EA248EF00708635 /* studentPin.swift */; };
 		BAB2755C1E9E8B2A00513C86 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2755B1E9E8B2A00513C86 /* StudentInformation.swift */; };
 		BABE97421E94D0EA0087ED9F /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE97411E94D0EA0087ED9F /* AddLocationViewController.swift */; };
 		BABE97441E94E5820087ED9F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABE97431E94E5810087ED9F /* CoreLocation.framework */; };
@@ -34,6 +35,7 @@
 		BA1FC4A91E92DAE700A405EB /* UdacityUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityUser.swift; sourceTree = "<group>"; };
 		BA430ECC1E93867500F92D5E /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		BA430ECE1E93877400F92D5E /* ParseStudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseStudent.swift; sourceTree = "<group>"; };
+		BA4BE2831EA248EF00708635 /* studentPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studentPin.swift; sourceTree = "<group>"; };
 		BAB2755B1E9E8B2A00513C86 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		BABE97411E94D0EA0087ED9F /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		BABE97431E94E5810087ED9F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				BA1FC4A91E92DAE700A405EB /* UdacityUser.swift */,
+				BA4BE2831EA248EF00708635 /* studentPin.swift */,
 				BA430ECC1E93867500F92D5E /* ParseConstants.swift */,
 				BAB2755B1E9E8B2A00513C86 /* StudentInformation.swift */,
 				BA430ECE1E93877400F92D5E /* ParseStudent.swift */,
@@ -280,6 +283,7 @@
 				BA1FC4A81E92D99200A405EB /* OnTheTableViewController.swift in Sources */,
 				BABE97421E94D0EA0087ED9F /* AddLocationViewController.swift in Sources */,
 				BA430ECD1E93867500F92D5E /* ParseConstants.swift in Sources */,
+				BA4BE2841EA248EF00708635 /* studentPin.swift in Sources */,
 				BA430ECF1E93877400F92D5E /* ParseStudent.swift in Sources */,
 				BAB2755C1E9E8B2A00513C86 /* StudentInformation.swift in Sources */,
 			);
