@@ -38,14 +38,7 @@ class AddLocationViewController: UIViewController {
         
     }
     
-    func showAlert(_ msg: String)
-    {
-        let viewController = UIAlertController.init(title: "OnTheMap", message: msg, preferredStyle: .alert)
-        let action = UIAlertAction.init(title: "Dismiss", style: .default, handler: nil)
-        viewController.addAction(action)
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
+   
     @IBAction func FindLocationPressed(_ sender: Any) {
         guard locationTextField.text == nil, websiteTextField.text == nil else
         {
@@ -63,7 +56,7 @@ class AddLocationViewController: UIViewController {
                 geocoder.geocodeAddressString(locationTextField.text!, completionHandler: { (placemark, error) in
                     if error != nil
                     {
-                        self.showAlert("Invalid Location")
+                        Alert().showAlert("Invalid Location",self)
                         self.activityView.stopAnimating()
                     }
                     else
@@ -74,15 +67,17 @@ class AddLocationViewController: UIViewController {
                             location = place.first?.location
                             AddLocationViewController.studentLocation = location!.coordinate
                             AddLocationViewController.mapString = self.locationTextField.text!
-                            
+                            activityView.stopAnimating()
                             self.performSegue(withIdentifier: "UserCoordinate", sender: location)
+                            
                         }
                     }
                 })
             }
             else
             {
-                showAlert("website link is not valid")
+                Alert().showAlert("website link is not valid",self)
+                activityView.stopAnimating()
                 return
             }
             return

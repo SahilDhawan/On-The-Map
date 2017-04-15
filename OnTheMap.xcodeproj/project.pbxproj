@@ -14,6 +14,7 @@
 		BA430ECD1E93867500F92D5E /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA430ECC1E93867500F92D5E /* ParseConstants.swift */; };
 		BA430ECF1E93877400F92D5E /* ParseStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA430ECE1E93877400F92D5E /* ParseStudent.swift */; };
 		BA4BE2841EA248EF00708635 /* studentPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BE2831EA248EF00708635 /* studentPin.swift */; };
+		BA4BE2871EA2562D00708635 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BE2861EA2562D00708635 /* Alert.swift */; };
 		BAB2755C1E9E8B2A00513C86 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2755B1E9E8B2A00513C86 /* StudentInformation.swift */; };
 		BABE97421E94D0EA0087ED9F /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE97411E94D0EA0087ED9F /* AddLocationViewController.swift */; };
 		BABE97441E94E5820087ED9F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABE97431E94E5810087ED9F /* CoreLocation.framework */; };
@@ -36,6 +37,7 @@
 		BA430ECC1E93867500F92D5E /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		BA430ECE1E93877400F92D5E /* ParseStudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseStudent.swift; sourceTree = "<group>"; };
 		BA4BE2831EA248EF00708635 /* studentPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studentPin.swift; sourceTree = "<group>"; };
+		BA4BE2861EA2562D00708635 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		BAB2755B1E9E8B2A00513C86 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		BABE97411E94D0EA0087ED9F /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		BABE97431E94E5810087ED9F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -75,6 +77,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BA4BE2851EA2560300708635 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA4BE2861EA2562D00708635 /* Alert.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		BAC9EE3A1E92BDB300DE90FA = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +106,7 @@
 		BAC9EE451E92BDB300DE90FA /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				BA4BE2851EA2560300708635 /* View */,
 				BAC9EE591E92BE2B00DE90FA /* Model */,
 				BAC9EE5B1E92BE3D00DE90FA /* Controller */,
 				BAC9EE581E92BE1400DE90FA /* Assets */,
@@ -279,6 +290,7 @@
 				BAC9EE491E92BDB300DE90FA /* LoginViewController.swift in Sources */,
 				BABE97481E9549B40087ED9F /* StudentDetails.swift in Sources */,
 				BA1FC4A61E92D98000A405EB /* OnTheMapViewController.swift in Sources */,
+				BA4BE2871EA2562D00708635 /* Alert.swift in Sources */,
 				BAC9EE471E92BDB300DE90FA /* AppDelegate.swift in Sources */,
 				BA1FC4A81E92D99200A405EB /* OnTheTableViewController.swift in Sources */,
 				BABE97421E94D0EA0087ED9F /* AddLocationViewController.swift in Sources */,

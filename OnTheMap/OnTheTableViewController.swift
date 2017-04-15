@@ -8,13 +8,12 @@
 
 import UIKit
 
-var resultArray : [[String:AnyObject]] = [[:]]
-let activityView:UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
 
 class OnTheTableViewController: UIViewController {
+
     @IBOutlet weak var tableView: UITableView!
-    
-    
+    let activityView:UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+    var resultArray : [[String:AnyObject]] = [[:]]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,10 +31,10 @@ class OnTheTableViewController: UIViewController {
                 do
                 {
                     let dataDict = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
-                    resultArray = dataDict["results"] as! [[String:AnyObject]]
+                    self.resultArray = dataDict["results"] as! [[String:AnyObject]]
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
-                        activityView.stopAnimating()
+                        self.activityView.stopAnimating()
                         self.tableView.isOpaque = false
                     }
                 }
@@ -47,7 +46,8 @@ class OnTheTableViewController: UIViewController {
             }
             else
             {
-                self.showAlert(errorString!)
+                Alert().showAlert(errorString!,self)
+                self.activityView.stopAnimating()
                 return
             }
         })
@@ -76,7 +76,8 @@ class OnTheTableViewController: UIViewController {
             }
             else
             {
-                self.showAlert(errorString!)
+                Alert().showAlert(errorString!,self)
+                self.activityView.stopAnimating()
             }
         }
     }
@@ -127,15 +128,6 @@ extension OnTheTableViewController:UITableViewDataSource
         }
         return tableCell!
     }
-    
-    func showAlert(_ msg : String)
-    {
-        let controller = UIAlertController.init(title: "OnTheMap", message: msg, preferredStyle: .alert)
-        let action = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
-        controller.addAction(action)
-        self.present(controller, animated: true, completion: nil)
-    }
-    
 }
 //MARK : UITableViewDelegate
 extension OnTheTableViewController:UITableViewDelegate

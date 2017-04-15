@@ -25,7 +25,8 @@ class UserCoordinateViewController: UIViewController {
         //ActivityIndicatorView
         activityView.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
         activityView.alpha = 1
-        self.view.addSubview(activityView)    }
+        self.view.addSubview(activityView)
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -58,12 +59,12 @@ class UserCoordinateViewController: UIViewController {
         
         //Creating StudentDetails Object
         let currentStudent = StudentDetails(currentStudentData)
-
+        
         if !StudentDetails.studentDetail
         {
             //setting flag to true
             StudentDetails.studentDetail = true
-      
+            
             ParseStudent().postingStudentDetails(currentStudent) { (result, errorString) in
                 if errorString == nil
                 {
@@ -79,13 +80,12 @@ class UserCoordinateViewController: UIViewController {
                 }
                 else
                 {
-                    self.showAlert(errorString!)
+                    Alert().showAlert(errorString!,self)
                 }
             }
         }
         else
         {
-      
             ParseStudent().puttingStudentDetails(currentStudent) { (result, errorString) in
                 if errorString == nil
                 {
@@ -98,7 +98,7 @@ class UserCoordinateViewController: UIViewController {
                 }
                 else
                 {
-                    self.showAlert(errorString!)
+                    Alert().showAlert(errorString!,self)
                 }
             }
         }
@@ -111,13 +111,6 @@ class UserCoordinateViewController: UIViewController {
         let _ = self.navigationController?.popViewController(animated: true)
     }
     
-    func showAlert(_ msg: String)
-    {
-        let viewController = UIAlertController.init(title: "OnTheMap", message: msg, preferredStyle: .alert)
-        let action = UIAlertAction.init(title: "Dismiss", style: .default, handler: nil)
-        viewController.addAction(action)
-        self.present(viewController, animated: true, completion: nil)
-    }
 }
 //MARK: MKMapViewDelegate
 extension UserCoordinateViewController : MKMapViewDelegate

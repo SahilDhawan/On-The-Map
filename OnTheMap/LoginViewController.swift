@@ -97,7 +97,7 @@ class LoginViewController: UIViewController {
                                 }
                                 catch{
                                     DispatchQueue.main.async {
-                                        self.showAlert("cannot serialise getStudentDetails Data")
+                                        Alert().showAlert("cannot serialise getStudentDetails Data",self)
                                         self.activityView.stopAnimating()
                                         self.logInButton.isEnabled = true
                                     }
@@ -106,12 +106,12 @@ class LoginViewController: UIViewController {
                             else
                             {
                                 //handling data fetch error
-                                self.showAlert(errorString!)
+                                Alert().showAlert(errorString!,self)
                             }
                         })
                     }
                     catch{
-                        self.showAlert("cannot serialise udacityLogin Data")
+                        Alert().showAlert("cannot serialise udacityLogin Data",self)
                         self.activityView.stopAnimating()
                         self.logInButton.isEnabled = true
                     }
@@ -120,7 +120,7 @@ class LoginViewController: UIViewController {
                 {
                     //handling Udacity login error
                     DispatchQueue.main.async {
-                        self.showAlert(error!)
+                        Alert().showAlert(error!,self)
                         self.activityView.stopAnimating()
                         self.logInButton.isEnabled = true
                         
@@ -130,19 +130,13 @@ class LoginViewController: UIViewController {
             return
         }
         // Alert for email and password
-        showAlert("Email or Password can't be empty")
+        Alert().showAlert("Email or Password can't be empty",self)
         self.activityView.stopAnimating()
         self.logInButton.isEnabled = true
     }
     
     //Alert Function
-    func showAlert(_ msg : String)
-    {
-        let controller = UIAlertController.init(title: "OnTheMap", message: msg, preferredStyle: .alert)
-        let action = UIAlertAction.init(title: "Dismiss", style: .cancel, handler: nil)
-        controller.addAction(action)
-        self.present(controller, animated: true, completion: nil)
-    }
+    
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
         let url = URL(string:"https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated")
