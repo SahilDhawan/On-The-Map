@@ -67,7 +67,7 @@ class AddLocationViewController: UIViewController {
                             location = place.first?.location
                             AddLocationViewController.studentLocation = location!.coordinate
                             AddLocationViewController.mapString = self.locationTextField.text!
-                            activityView.stopAnimating()
+                            self.activityView.stopAnimating()
                             self.performSegue(withIdentifier: "UserCoordinate", sender: location)
                             
                         }
