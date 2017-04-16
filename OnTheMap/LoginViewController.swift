@@ -11,7 +11,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    let activityView : UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
     
     //MARK: Outlets
     @IBOutlet weak var emailTextField: UITextField!
@@ -32,7 +31,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
         //Clearing Text Field Data
         self.emailTextField.text = ""
         self.passwordTextField.text = ""
@@ -41,21 +40,12 @@ class LoginViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.isHidden = false
+       navigationController?.navigationBar.isHidden = false
     }
-    
-    func activityViewIndicator()
-    {
-        activityView.center = CGPoint.init(x: self.view.frame.width/2, y: self.view.frame.height/2)
-        activityView.alpha = 1
-        activityView.startAnimating()
-        self.view.addSubview(activityView)
-    }
-    
-    //MARK: Login and Data Fetch
+       //MARK: Login and Data Fetch
     @IBAction func loginButtonPressed(_ sender: Any)
     {
-        activityViewIndicator()
+        Alert().activityView(true, self.view)
         self.logInButton.isEnabled = false
         guard  (emailTextField.text == "" || passwordTextField.text == "") else
         {
@@ -91,14 +81,14 @@ class LoginViewController: UIViewController {
                                         LoginViewController.userId = userId
                                         LoginViewController.firstName = userDict["first_name"] as! String
                                         //Segue
-                                        self.activityView.stopAnimating()
+                                        Alert().activityView(false,self.view)
                                         self.performSegue(withIdentifier: "loginSegue", sender: self)
                                     }
                                 }
                                 catch{
                                     DispatchQueue.main.async {
                                         Alert().showAlert("cannot serialise getStudentDetails Data",self)
-                                        self.activityView.stopAnimating()
+                                        Alert().activityView(false,self.view)
                                         self.logInButton.isEnabled = true
                                     }
                                 }
@@ -112,7 +102,7 @@ class LoginViewController: UIViewController {
                     }
                     catch{
                         Alert().showAlert("cannot serialise udacityLogin Data",self)
-                        self.activityView.stopAnimating()
+                        Alert().activityView(false,self.view)
                         self.logInButton.isEnabled = true
                     }
                 }
@@ -121,7 +111,7 @@ class LoginViewController: UIViewController {
                     //handling Udacity login error
                     DispatchQueue.main.async {
                         Alert().showAlert(error!,self)
-                        self.activityView.stopAnimating()
+                        Alert().activityView(false,self.view)
                         self.logInButton.isEnabled = true
                         
                     }
@@ -131,7 +121,7 @@ class LoginViewController: UIViewController {
         }
         // Alert for email and password
         Alert().showAlert("Email or Password can't be empty",self)
-        self.activityView.stopAnimating()
+        Alert().activityView(false,self.view)
         self.logInButton.isEnabled = true
     }
     

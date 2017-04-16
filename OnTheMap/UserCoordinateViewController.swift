@@ -13,7 +13,6 @@ class UserCoordinateViewController: UIViewController {
     
     
     @IBOutlet weak var mapView: MKMapView!
-    let activityView : UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
     
     //Current User Details
     static var objectId : String = ""
@@ -22,10 +21,7 @@ class UserCoordinateViewController: UIViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
         
-        //ActivityIndicatorView
-        activityView.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
-        activityView.alpha = 1
-        self.view.addSubview(activityView)
+        Alert().activityView(true, self.view)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -116,7 +112,7 @@ class UserCoordinateViewController: UIViewController {
 extension UserCoordinateViewController : MKMapViewDelegate
 {
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-        self.activityView.stopAnimating()
+        Alert().activityView(false, self.view)
     }
 }
 

@@ -10,32 +10,36 @@ import UIKit
 
 
 class OnTheTableViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
-    let activityView:UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
-    var resultArray : [[String:AnyObject]] = [[:]]
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
-        getDataFromParse()
-    }
+            }
     
     func getDataFromParse()
     {
-        activityViewIndicator()
+        refreshButton.isEnabled = false
+        addButton.isEnabled = false
+        Alert().activityView(true, self.view)
         ParseStudent().getStudentLocations(completionHandler: {(data,errorString) in
             if errorString == nil
             {
                 do
                 {
                     let dataDict = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
-                    self.resultArray = dataDict["results"] as! [[String:AnyObject]]
+                    StudentInformation.studentArray = dataDict["results"] as! [[String:AnyObject]]
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
-                        self.activityView.stopAnimating()
+                        Alert().activityView(false,self.view)
                         self.tableView.isOpaque = false
+                        
+                        self.refreshButton.isEnabled = true
+                        self.addButton.isEnabled = true
                     }
                 }
                 catch
@@ -47,22 +51,16 @@ class OnTheTableViewController: UIViewController {
             else
             {
                 Alert().showAlert(errorString!,self)
-                self.activityView.stopAnimating()
+                Alert().activityView(false,self.view)
+                self.refreshButton.isEnabled = true
+                self.addButton.isEnabled = true
                 return
             }
         })
     }
-    func activityViewIndicator()
-    {
-        activityView.center = CGPoint.init(x: self.view.frame.width/2, y: self.view.frame.height/2)
-        activityView.alpha = 1
-        activityView.startAnimating()
-        self.view.addSubview(activityView)
-        self.tableView.isOpaque = true
-    }
     //MARK: LogOut
     @IBAction func logOutPressed(_ sender: Any) {
-        activityViewIndicator()
+        Alert().activityView(true, self.view)
         UdacityUser().udacityLogOut(){(result,errorString)
             in
             if errorString == nil
@@ -77,7 +75,7 @@ class OnTheTableViewController: UIViewController {
             else
             {
                 Alert().showAlert(errorString!,self)
-                self.activityView.stopAnimating()
+                Alert().activityView(false,self.view)
             }
         }
     }
@@ -97,7 +95,8 @@ class OnTheTableViewController: UIViewController {
             let overwriteActon  = UIAlertAction.init(title: "Overwrite", style: .default, handler: { (action) in
                 
                 let controller = self.storyboard?.instantiateViewController(withIdentifier: "AddLocation")
-                self.present(controller!, animated: true, completion: nil)            })
+                self.present(controller!, animated: true, completion: nil)
+            })
             controller.addAction(overwriteActon)
             controller.addAction(dismissAction)
             self.present(controller, animated: true, completion: nil)
@@ -112,28 +111,26 @@ class OnTheTableViewController: UIViewController {
 extension OnTheTableViewController:UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultArray.count
+        return StudentInformation.studentArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell = tableView.dequeueReusableCell(withIdentifier: "OnTheTableCell")
-        let studentData = resultArray[indexPath.row]
+        let studentData = StudentInformation.studentArray[indexPath.row]
         let firstName : String? = (studentData["firstName"] as? String)
         let mediaURL : String? = (studentData["mediaURL"] as? String)
         
-        tableCell?.textLabel?.text = firstName
-        tableCell?.detailTextLabel?.text = mediaURL
-        if firstName != nil
-        {
+        //creating table Cell
+            tableCell?.textLabel?.text = firstName
+            tableCell?.detailTextLabel?.text = mediaURL
             tableCell?.imageView?.image = UIImage(named:"icon_pin")
-        }
-        return tableCell!
+            return tableCell!
     }
 }
 //MARK : UITableViewDelegate
 extension OnTheTableViewController:UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let studentData = resultArray[indexPath.row]
+        let studentData = StudentInformation.studentArray[indexPath.row]
         let mediaUrl :String? = studentData["mediaURL"] as? String
         let url : URL = URL(string: mediaUrl!)!
         UIApplication.shared.open(url, options:[:] , completionHandler: nil)

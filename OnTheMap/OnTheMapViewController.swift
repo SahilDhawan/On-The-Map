@@ -12,34 +12,42 @@ import MapKit
 
 class OnTheMapViewController: UIViewController {
     
-    let activityView : UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
     
     @IBOutlet weak var mapView: MKMapView!
-    var resultArray : [[String:AnyObject]] = [[:]]
+    @IBOutlet weak var plusButton: UIBarButtonItem!
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
-        getDataFromParse()
+        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
     }
     func getDataFromParse()
     {
-        activityViewIndicator()
+        refreshButton.isEnabled = false
+        plusButton.isEnabled = false
+        
+        Alert().activityView(true, self.view)
+        self.mapView.isOpaque = true
         ParseStudent().getStudentLocations(){(result,errorString) in
             
             if errorString == nil
             {
                 do{
                     let resultDictionary = try JSONSerialization.jsonObject(with: result!, options: .allowFragments) as! [String:AnyObject]
-                    self.resultArray = resultDictionary["results"] as! [[String:AnyObject]]
+                    StudentInformation.studentArray = resultDictionary["results"] as! [[String:AnyObject]]
                     DispatchQueue.main.async {
-                        self.mapView.isUserInteractionEnabled = true
                         self.addingAnnotations()
+                        Alert().activityView(false, self.view)
+                        self.refreshButton.isEnabled = true
+                        self.plusButton.isEnabled = true
+                        self.mapView.isOpaque = false
                     }
                 }
                 catch{}
@@ -47,21 +55,14 @@ class OnTheMapViewController: UIViewController {
             else
             {
                 Alert().showAlert(errorString!,self)
+                self.refreshButton.isEnabled = true
+                self.plusButton.isEnabled = true
             }
         }
     }
-    
-    func activityViewIndicator()
-    {
-        activityView.center = CGPoint.init(x: self.view.frame.width/2, y: self.view.frame.height/2)
-        activityView.alpha = 1
-        activityView.startAnimating()
-        self.view.addSubview(activityView)
-        self.mapView.isOpaque = true
-    }
-    //MARK: LogOut
+      //MARK: LogOut
     @IBAction func logOutButtonPressed(_ sender: Any) {
-        activityViewIndicator()
+        Alert().activityView(true, self.view)
         UdacityUser().udacityLogOut(){(result,errorString)
             in
             if errorString == nil
@@ -76,49 +77,37 @@ class OnTheMapViewController: UIViewController {
             else
             {
                 Alert().showAlert(errorString!,self)
+                Alert().activityView(false, self.view)
             }
         }
     }
     
     func addingAnnotations()
     {
-        for studentData in resultArray
+        for studentData in StudentInformation.studentArray
         {
             //adding StudentData to studentArray
-            StudentInformation.studentArray.append(StudentDetails(studentData))
-            let latitude = studentData["latitude"] as? CLLocationDegrees
             
-            //Apparently they can't spell longitude
-            let longitude1 = studentData["longitude"] as? CLLocationDegrees
-            let longitude2 = studentData["longtiude"] as? CLLocationDegrees
+            let latitude = studentData["latitude"] as? CLLocationDegrees
+            let longitude = studentData["longitude"] as? CLLocationDegrees
             
             let firstName = studentData["firstName"] as? String
             let mediaUrl  = studentData["mediaURL"] as? String
             var coordinate : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-            if latitude != nil
+
+            //unwrapping optional values
+            if let firstName = firstName , let mediaUrl = mediaUrl , let latitude = latitude , let longitude = longitude
             {
-                coordinate = CLLocationCoordinate2DMake(latitude!, longitudeCheck(longitude1, longitude2))
+                coordinate = CLLocationCoordinate2D.init(latitude: latitude, longitude: longitude)
+                let annotation = studentPin(firstName,mediaUrl,coordinate)
+                self.mapView.addAnnotation(annotation)
+                
             }
-            //created studentPin Object
-            let annotation = studentPin(firstName!,mediaUrl!,coordinate)
-            self.mapView.addAnnotation(annotation)
         }
     }
     
     @IBAction func refreshButtonPressed(_ sender: Any) {
         getDataFromParse()
-    }
-    
-    func longitudeCheck( _ long1 : CLLocationDegrees?, _ long2 : CLLocationDegrees?) -> CLLocationDegrees
-    {
-        if long1 == nil
-        {
-            return long2!
-        }
-        else
-        {
-            return long1!
-        }
     }
     
     @IBAction func addLocation(_ sender: Any) {
@@ -140,7 +129,6 @@ class OnTheMapViewController: UIViewController {
             controller.addAction(overwriteActon)
             controller.addAction(dismissAction)
             self.present(controller, animated: true, completion: nil)
-            
         }
     }
     
@@ -148,7 +136,8 @@ class OnTheMapViewController: UIViewController {
 extension OnTheMapViewController : MKMapViewDelegate
 {
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-        self.activityView.stopAnimating()
+        Alert().activityView(false,self.view)
+       
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -173,7 +162,10 @@ extension OnTheMapViewController : MKMapViewDelegate
         return nil
     }
     
-    
+    func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
+        Alert().activityView(true, self.view)
+        getDataFromParse()
+    }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let student = view.annotation as! studentPin

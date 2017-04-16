@@ -20,6 +20,7 @@ class studentPin : NSObject,MKAnnotation
         self.subtitle = subtitle
         self.coordinate = coordinate
     }
+    
     func getLink() -> String
     {
         return subtitle!
