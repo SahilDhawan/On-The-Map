@@ -99,8 +99,7 @@ class UserCoordinateViewController: UIViewController {
             }
         }
         //presenting Tab View Controller
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "tabController")
-        self.present(controller!, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
