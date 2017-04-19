@@ -15,6 +15,7 @@
 		BA430ECF1E93877400F92D5E /* ParseStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA430ECE1E93877400F92D5E /* ParseStudent.swift */; };
 		BA4BE2841EA248EF00708635 /* studentPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BE2831EA248EF00708635 /* studentPin.swift */; };
 		BA4BE2871EA2562D00708635 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4BE2861EA2562D00708635 /* Alert.swift */; };
+		BAAFA91E1EA7AA4200F7D1FA /* ScreenShots in Resources */ = {isa = PBXBuildFile; fileRef = BAAFA91D1EA7AA4200F7D1FA /* ScreenShots */; };
 		BAB2755C1E9E8B2A00513C86 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2755B1E9E8B2A00513C86 /* StudentInformation.swift */; };
 		BABE97421E94D0EA0087ED9F /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE97411E94D0EA0087ED9F /* AddLocationViewController.swift */; };
 		BABE97441E94E5820087ED9F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABE97431E94E5810087ED9F /* CoreLocation.framework */; };
@@ -38,6 +39,7 @@
 		BA430ECE1E93877400F92D5E /* ParseStudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseStudent.swift; sourceTree = "<group>"; };
 		BA4BE2831EA248EF00708635 /* studentPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studentPin.swift; sourceTree = "<group>"; };
 		BA4BE2861EA2562D00708635 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		BAAFA91D1EA7AA4200F7D1FA /* ScreenShots */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ScreenShots; path = ../../../../Desktop/ScreenShots; sourceTree = "<group>"; };
 		BAB2755B1E9E8B2A00513C86 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		BABE97411E94D0EA0087ED9F /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		BABE97431E94E5810087ED9F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -147,6 +149,7 @@
 				BA1FC4A51E92D98000A405EB /* OnTheMapViewController.swift */,
 				BABE97411E94D0EA0087ED9F /* AddLocationViewController.swift */,
 				BABE97451E94F3780087ED9F /* UserCoordinateViewController.swift */,
+				BAAFA91D1EA7AA4200F7D1FA /* ScreenShots */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAAFA91E1EA7AA4200F7D1FA /* ScreenShots in Resources */,
 				BAC9EE511E92BDB300DE90FA /* LaunchScreen.storyboard in Resources */,
 				BAC9EE4E1E92BDB300DE90FA /* Assets.xcassets in Resources */,
 				BAC9EE4C1E92BDB300DE90FA /* Main.storyboard in Resources */,
